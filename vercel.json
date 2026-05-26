@@ -1,14 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.albtaa.com"
         }
       ],
-      "destination": "https://albtaa.com/:path*",
+      "destination": "https://albtaa.com/$1",
       "permanent": true
     }
   ]
