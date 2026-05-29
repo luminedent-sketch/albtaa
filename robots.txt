@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.albtaa.com/sitemap.xml
+Sitemap: https://albtaa.com/sitemap.xml
