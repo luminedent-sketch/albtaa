@@ -7,6 +7,7 @@
   <meta name="description" content="What eTatime (tatime.gov.al) is, what filings go through it, the monthly deadlines, the fines for missing them — and how foreign-owned companies have it managed entirely in English or Italian."/>
   <link rel="canonical" href="https://albtaa.com/blog/etatime-albania.html"/>
   <link rel="alternate" hreflang="en" href="https://albtaa.com/blog/etatime-albania.html"/>
+  <link rel="alternate" hreflang="it" href="https://albtaa.com/blog/guida-etatime-albania.html"/>
   <link rel="alternate" hreflang="x-default" href="https://albtaa.com/blog/etatime-albania.html"/>
   <meta name="robots" content="index, follow"/>
   <meta name="author" content="Tax Advisory &amp; Accounting Albania — albtaa.com"/>
@@ -522,9 +523,9 @@ section[id],[id]{scroll-margin-top:68px}
       <div>
         <div class="footer-title" data-lang-en>From the Blog</div><div class="footer-title lang-hidden" data-lang-it>Dal Blog</div>
         <div class="footer-links">
-          <a href="/blog/how-to-open-shpk-albania.html" data-lang-en>Open an SHPK in Albania</a><a href="/blog/how-to-open-shpk-albania.html" class="lang-hidden" data-lang-it>Aprire una SHPK in Albania</a>
-          <a href="/blog/vat-albania.html" data-lang-en>VAT in Albania</a><a href="/blog/vat-albania.html" class="lang-hidden" data-lang-it>IVA in Albania</a>
-          <a href="/blog/albania-vs-italy-taxes.html" data-lang-en>Albania vs Italy Taxes</a><a href="/blog/albania-vs-italy-taxes.html" class="lang-hidden" data-lang-it>Tasse Albania vs Italia</a>
+          <a href="/blog/how-to-open-shpk-albania.html" data-lang-en>Open an SHPK in Albania</a><a href="/blog/aprire-societa-albania.html" class="lang-hidden" data-lang-it>Aprire una SHPK in Albania</a>
+          <a href="/blog/vat-albania.html" data-lang-en>VAT in Albania</a><a href="/blog/iva-albania.html" class="lang-hidden" data-lang-it>IVA in Albania</a>
+          <a href="/blog/albania-vs-italy-taxes.html" data-lang-en>Albania vs Italy Taxes</a><a href="/blog/tasse-albania-vs-italia.html" class="lang-hidden" data-lang-it>Tasse Albania vs Italia</a>
           <a href="/blog/" data-lang-en>All Articles</a><a href="/blog/" class="lang-hidden" data-lang-it>Tutti gli Articoli</a>
         </div>
       </div>
@@ -587,8 +588,14 @@ section[id],[id]{scroll-margin-top:68px}
     });
   }
 
+  var LANG_URLS={en:'/blog/etatime-albania.html',it:'/blog/guida-etatime-albania.html'};
   document.querySelectorAll('.lang-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){applyLang(btn.dataset.lang);});
+    btn.addEventListener('click',function(){
+      var lang=btn.dataset.lang;
+      try{localStorage.setItem('albtaa_lang',lang);}catch(e){}
+      if(LANG_URLS[lang]&&location.pathname!==LANG_URLS[lang]){location.href=LANG_URLS[lang];return;}
+      applyLang(lang);
+    });
   });
   applyLang(currentLang);
 
