@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://albtaa.com/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/register-company-albania.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/register-company-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/registrare-azienda-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/register-company-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/registrare-azienda-albania.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.96</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/registrare-azienda-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/register-company-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/register-company-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/services.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/services.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/servizi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/services.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/servizi.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/servizi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/services.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/contact.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/contatti.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/contact.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/contatti.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/contatti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/contact.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/why-albania.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/why-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/perche-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/why-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/perche-albania.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/perche-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/why-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/why-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/faq.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/domande-frequenti.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/faq.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/domande-frequenti.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/domande-frequenti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/faq.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/process.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/process.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/processo.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/process.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/processo.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/processo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/process.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/process.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/about.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/chi-siamo.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/about.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/chi-siamo.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/chi-siamo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/about.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/team.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/team.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/team.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/team.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/team.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.73</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/team.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/team.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/team.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/privacy-policy.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/privacy-policy.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/privacy-policy.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.18</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/privacy-policy.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/cookies.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/cookies.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/cookies.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.18</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/cookies.html"/>
+  </url>
+
+</urlset>

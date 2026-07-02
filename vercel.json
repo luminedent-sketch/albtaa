@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.albtaa.com"
+        }
+      ],
+      "destination": "https://albtaa.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/registrare-azienda-albania.html",
+      "destination": "/it/registrare-azienda-albania.html",
+      "permanent": true
+    }
+  ]
+}
