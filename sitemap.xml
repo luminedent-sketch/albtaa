@@ -43,6 +43,26 @@
   </url>
 
   <url>
+    <loc>https://albtaa.com/tax-representative-albania.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.97</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/tax-representative-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/rappresentante-fiscale-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/tax-representative-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/rappresentante-fiscale-albania.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/rappresentante-fiscale-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/tax-representative-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/tax-representative-albania.html"/>
+  </url>
+
+  <url>
     <loc>https://albtaa.com/services.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
