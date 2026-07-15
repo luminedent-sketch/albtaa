@@ -77,7 +77,7 @@ nav{position:sticky;top:0;z-index:900;background:rgba(14,27,46,.97);backdrop-fil
 .logo-sub{font-size:.64rem;color:rgba(255,255,255,.45);letter-spacing:.08em;text-transform:uppercase}
 .nl{display:flex;align-items:center;gap:2px}
 .nl li{display:flex}
-.nl a{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.65);padding:6px 11px;border-radius:7px;transition:color .15s,background .15s}
+.nl a{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);padding:6px 9px;border-radius:7px;transition:color .15s,background .15s;white-space:nowrap}
 .nl a:hover,.nl a[aria-current]{color:#fff;background:rgba(255,255,255,.08)}
 .nl a[aria-current]{font-weight:700}
 .ncta{background:var(--red)!important;color:#fff!important;border-radius:100px!important;font-weight:700!important;padding:7px 17px!important}
@@ -87,7 +87,7 @@ nav{position:sticky;top:0;z-index:900;background:rgba(14,27,46,.97);backdrop-fil
 .lb{background:none;border:none;color:rgba(255,255,255,.5);font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:5px;cursor:pointer;letter-spacing:.04em;transition:background .15s,color .15s}
 .lb.active{background:rgba(255,255,255,.15);color:#fff}
 .mbtn{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:5px}
-@media(max-width:860px){.nl{display:none}.mbtn{display:flex}}
+@media(max-width:1080px){.nl{display:none}.mbtn{display:flex}}
 
 /* MOBILE */
 .mobile-overlay{position:fixed;inset:0;z-index:950;background:var(--navy);flex-direction:column;align-items:center;justify-content:center;gap:6px}
@@ -335,17 +335,19 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <nav aria-label="Navigazione principale" role="navigation">
 <div class="nav-in">
 <a aria-label="Consulenza Fiscale &amp; Contabilità Albania" class="logo" href="index.html">
-<div class="logo-main">Consulenza Fiscale <span style="color:var(--red)">&amp;</span> Contabilità</div>
+<div class="logo-main">Tax Advisory <span style="color:var(--red)">&amp;</span> Accounting</div>
 <div class="logo-sub">Albania · Tirana</div>
 </a>
 <ul class="nl" role="list">
 <li><a href="index.html">Home</a></li>
-<li><a href="register-company-albania.html">Costituisci un'Azienda</a></li>
+<li><a href="registrare-azienda-albania.html">Registra Società</a></li>
 <li><a aria-current="page" href="rappresentante-fiscale-albania.html">Rappresentante Fiscale</a></li>
-<li><a href="services.html">Servizi</a></li>
-<li><a href="process.html">Processo</a></li>
+<li><a href="perche-albania.html">Perché Albania</a></li>
+<li><a href="servizi.html">Servizi</a></li>
+<li><a href="processo.html">Processo</a></li>
 <li><a href="team.html">Team</a></li>
-<li><a href="about.html">Chi Siamo</a></li>
+<li><a href="chi-siamo.html">Chi Siamo</a></li>
+<li><a href="domande-frequenti.html">FAQ</a></li>
 <li><a class="ncta" href="#get-assessment">Valutazione Gratuita</a></li>
 </ul>
 <div class="nr">
@@ -363,12 +365,14 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <button aria-label="Chiudi" class="mc">×</button>
 <ul class="mnl" role="list">
 <li><a href="index.html">Home</a></li>
-<li><a href="register-company-albania.html">Costituisci un'Azienda</a></li>
+<li><a href="registrare-azienda-albania.html">Registra Società</a></li>
 <li><a href="rappresentante-fiscale-albania.html">Rappresentante Fiscale</a></li>
-<li><a href="services.html">Servizi</a></li>
-<li><a href="process.html">Processo</a></li>
+<li><a href="perche-albania.html">Perché Albania</a></li>
+<li><a href="servizi.html">Servizi</a></li>
+<li><a href="processo.html">Processo</a></li>
 <li><a href="team.html">Team</a></li>
-<li><a href="about.html">Chi Siamo</a></li>
+<li><a href="chi-siamo.html">Chi Siamo</a></li>
+<li><a href="domande-frequenti.html">FAQ</a></li>
 <li><a class="ncta" href="#get-assessment" style="border-radius:100px;padding:10px 22px;background:var(--red);color:#fff;margin-top:6px">Valutazione Gratuita</a></li>
 </ul>
 <div class="mls">
@@ -399,7 +403,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 </div>
 <div class="hero-ctas">
 <a class="btn btn-red" href="#get-assessment">Richiedi una Valutazione Gratuita →</a>
-<a class="btn btn-ghost" href="contact.html">Prenota una Consulenza</a>
+<a class="btn btn-ghost" href="contatti.html">Prenota una Consulenza</a>
 </div>
 </div>
 <!-- FORM CARD -->
@@ -408,7 +412,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <div class="hcard-sub">Nessun impegno · Risposta entro 24 ore</div>
 
 <form action="https://script.google.com/macros/s/AKfycbwoQynH8f-pftGWwUPvAY5A-ZFBlahhjWcPw5eLnvhRismwrCurLNyNdZVpFRAWa6W5/exec" id="tax-rep-form" method="POST">
-<input name="page" type="hidden" value="tax-representative-albania-it"/>
+<input name="page" type="hidden" value="tax-representative-albania"/>
 <input name="type" type="hidden" value="lead"/>
 <input class="js-referrer" name="referrer" type="hidden" value=""/>
 <input class="js-pageurl" name="pageUrl" type="hidden" value=""/>
@@ -789,7 +793,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <div class="faq-i"><button aria-expanded="false" class="faq-btn"><span>Le spese governative sono incluse?</span><i data-lucide="plus"></i></button><div class="faq-ans"><p>Le nostre tariffe di servizio coprono il nostro lavoro professionale. Le spese governative, notarili e di traduzione, ove applicabili, sono costi di terzi fatturati separatamente al costo e confermati in anticipo durante la tua valutazione gratuita.</p></div></div>
 </div>
 <div style="text-align:center;margin-top:36px">
-<a class="btn btn-outline" href="faq.html">Vedi Tutte le FAQ →</a>
+<a class="btn btn-outline" href="domande-frequenti.html">Vedi Tutte le FAQ →</a>
 </div>
 </div>
 </section>
@@ -802,7 +806,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <p>Lascia che ALBTAA gestisca la tua rappresentanza fiscale, contabilità e obblighi di compliance mentre tu ti concentri sulla tua attività.</p>
 <div class="bcta-btns">
 <a class="btn btn-red" href="#get-assessment">Richiedi una Valutazione Gratuita →</a>
-<a class="btn btn-ghost" href="contact.html">Contatta ALBTAA</a>
+<a class="btn btn-ghost" href="contatti.html">Contatta ALBTAA</a>
 </div>
 <div class="bcta-trust">
 <span>✓ Piani di compliance a tariffa fissa</span>
@@ -818,17 +822,17 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <div class="wrap">
 <div class="fg">
 <div>
-<div class="ft">Consulenza Fiscale &amp; Contabilità Albania</div>
+<div class="ft">Tax Advisory &amp; Accounting Albania</div>
 <p class="fp">Studio autorizzato a Tirana che offre rappresentanza fiscale, contabilità e compliance per investitori esteri. Parliamo Inglese e Italiano.</p>
 </div>
 <div>
 <div class="ft">Compliance</div>
 <div class="fl">
 <a href="rappresentante-fiscale-albania.html">Rappresentante Fiscale Albania</a>
-<a href="register-company-albania.html">Costituisci un'Azienda</a>
-<a href="services.html">Tutti i Servizi</a>
-<a href="faq.html">FAQ</a>
-<a href="contact.html">Contatti</a>
+<a href="registrare-azienda-albania.html">Registra Società</a>
+<a href="servizi.html">Tutti i Servizi</a>
+<a href="domande-frequenti.html">FAQ</a>
+<a href="contatti.html">Contatti</a>
 </div>
 </div>
 <div>
@@ -840,7 +844,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 </div>
 </div>
 <div class="fb">
-<div class="fc">© 2026 Consulenza Fiscale &amp; Contabilità Albania — Tutti i diritti riservati. Tirana, Albania.</div>
+<div class="fc">© 2026 Tax Advisory &amp; Accounting Albania — Tutti i diritti riservati. Tirana, Albania.</div>
 <div class="fn">Le tariffe dei servizi indicate coprono esclusivamente il nostro lavoro professionale. Le spese governative, notarili e di traduzione, ove applicabili, sono costi di terzi fatturati separatamente al costo e confermati in anticipo. Non costituisce consulenza legale.</div>
 </div>
 </div>
