@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Albania Business Navigator — Register a Company in Albania | ALBTAA</title>
+<meta name="description" content="Explore six real business paths to registering a company in Albania — Tech Startup, Investment, Holding, Import Export, Consulting, Engineering. 3–5 day setup, 0% CIT eligible, 100% remote and foreign-owned. Powered by Albtaa."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://albtaa.com/business-navigator"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Albania Business Navigator | ALBTAA"/>
+<meta property="og:description" content="Six real paths to a registered company in Albania — explore, compare, and start your registration in 3–5 business days."/>
+<meta property="og:url" content="https://albtaa.com/business-navigator"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Company Registration",
+  "provider": {"@type":"Organization","name":"Albtaa","url":"https://albtaa.com","areaServed":"Albania"},
+  "areaServed": {"@type":"Country","name":"Albania"},
+  "offers": [
+    {"@type":"Offer","name":"Tech Startup Company in Albania","priceCurrency":"EUR","price":"250"},
+    {"@type":"Offer","name":"Investment & Holding Company in Albania","priceCurrency":"EUR","price":"250"},
+    {"@type":"Offer","name":"Import Export Company in Albania","priceCurrency":"EUR","price":"250"},
+    {"@type":"Offer","name":"Consulting Company in Albania","priceCurrency":"EUR","price":"250"},
+    {"@type":"Offer","name":"Engineering Company in Albania","priceCurrency":"EUR","price":"250"}
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#0b1524;color:#0e1b2e;-webkit-font-smoothing:antialiased}
+:root{--navy:#0e1b2e;--red:#b22234;--red-lt:#d42840;--muted:#6b7685;--border:#e2e6ec;--fh:'Manrope',system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+
+.experience{position:relative;width:100%;height:100vh;height:100dvh;overflow:hidden;background:#0b1524}
+#map{position:absolute;inset:0;width:100%;height:100%}
+
+/* concept notice ribbon */
+.concept-flag{position:absolute;top:0;left:0;right:0;z-index:50;background:#111c2d;color:#ffb8c2;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-align:center;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.1)}
+
+/* Intro gate */
+.gate{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(178,34,52,.16),transparent),#0b1524}
+.gate-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ffb8c2;background:rgba(255,184,194,.12);padding:6px 16px;border-radius:100px;margin-bottom:18px}
+.gate h1{font-family:var(--fh);font-weight:800;color:#fff;font-size:clamp(1.7rem,5vw,2.7rem);max-width:640px;line-height:1.12;margin-bottom:14px}
+.gate h1 em{font-style:normal;color:#ffb8c2}
+.gate p{color:rgba(255,255,255,.62);font-size:.95rem;max-width:480px;line-height:1.7;margin-bottom:30px}
+.gate-btn{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;padding:16px 32px;border-radius:100px;font-weight:700;font-size:.95rem;border:none;cursor:pointer;transition:background .2s,transform .2s}
+.gate-btn:hover{background:var(--red-lt);transform:translateY(-2px)}
+.gate-hint{margin-top:16px;color:rgba(255,255,255,.35);font-size:.72rem}
+.gate.hidden{display:none}
+
+/* Topbar */
+.topbar{position:absolute;top:max(34px, env(safe-area-inset-top));left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:16px max(18px, env(safe-area-inset-right)) 16px max(18px, env(safe-area-inset-left));pointer-events:none;opacity:0;transition:opacity .4s}
+.topbar.show{opacity:1}
+.chip{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(14,27,46,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);color:#fff;padding:9px 14px;border-radius:100px;font-size:.78rem;font-weight:700;cursor:pointer}
+.chip:hover{background:rgba(14,27,46,.9)}
+
+.about-popover{position:absolute;top:calc(100% + 10px);right:0;width:280px;background:rgba(14,27,46,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:18px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.about-popover.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.ap-eyebrow{color:#ffb8c2;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.about-popover p{color:rgba(255,255,255,.75);font-size:.8rem;line-height:1.6;margin-bottom:14px}
+.ap-stat-row{display:flex;gap:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:12px}
+.ap-stat-row div{flex:1;text-align:center}
+.ap-stat-row b{display:block;color:#fff;font-family:var(--fh);font-weight:800;font-size:1rem}
+.ap-stat-row span{display:block;color:rgba(255,255,255,.45);font-size:.6rem;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+
+/* real map markers */
+.mk{cursor:pointer;text-align:center;transform:translateY(6px)}
+.mk-pre-intro{opacity:0;transition:opacity .5s ease;pointer-events:none}
+.mk-pre-intro.reveal{opacity:1;pointer-events:auto}
+.mk-dot{width:12px;height:12px;border-radius:50%;background:#ffb8c2;border:2px solid #0e1b2e;margin:0 auto 6px;box-shadow:0 0 0 0 rgba(178,34,52,.5);animation:mpulse 3.4s ease-in-out infinite}
+@keyframes mpulse{0%{box-shadow:0 0 0 0 rgba(178,34,52,.4)}70%{box-shadow:0 0 0 10px rgba(178,34,52,0)}100%{box-shadow:0 0 0 0 rgba(178,34,52,0)}}
+.mk-tag{background:rgba(14,27,46,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;font-family:var(--fh);font-weight:800;font-size:.72rem;padding:6px 12px;border-radius:100px;white-space:nowrap}
+.mk-hq{width:18px;height:18px;border-radius:5px;background:var(--red);border:2px solid #fff;margin:0 auto 6px;box-shadow:0 0 0 0 rgba(178,34,52,.6);animation:mpulse 2.2s infinite}
+
+/* welcome moment */
+.welcome{position:absolute;inset:0;z-index:35;display:flex;align-items:center;justify-content:center;background:rgba(11,21,36,0);pointer-events:none;transition:background .5s}
+.welcome.show{background:rgba(11,21,36,.55);pointer-events:auto}
+.welcome-card{opacity:0;transform:scale(.92);transition:opacity .45s,transform .45s;text-align:center;padding:20px}
+.welcome.show .welcome-card{opacity:1;transform:scale(1)}
+.welcome-eyebrow{color:#ffb8c2;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.welcome-title{font-family:var(--fh);font-weight:800;color:#fff;font-size:clamp(1.5rem,4.5vw,2.3rem);margin-bottom:10px}
+.welcome-sub{color:rgba(255,255,255,.6);font-size:.92rem}
+.welcome-geo{margin-top:14px;color:rgba(255,255,255,.4);font-size:.7rem;font-family:monospace}
+
+/* info panel */
+.panel{position:absolute;inset:0;z-index:30;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.panel-card{pointer-events:auto;width:100%;max-width:520px;margin:0 16px 16px;background:#fff;border-radius:22px 22px 18px 18px;box-shadow:0 30px 80px rgba(0,0,0,.5);max-height:82vh;overflow-y:auto;transform:translateY(24px);opacity:0;transition:transform .3s cubic-bezier(.2,.9,.3,1.1),opacity .25s}
+.panel.open .panel-card{transform:translateY(0);opacity:1}
+.panel-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:#f5f6f8;border:1px solid var(--border);color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;z-index:2}
+.panel-hero{padding:26px 24px 18px;position:relative}
+.panel-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.panel-title{font-family:var(--fh);font-weight:800;font-size:1.35rem;color:var(--navy);margin-bottom:8px;line-height:1.15}
+.panel-desc{font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.panel-checks{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.panel-checks li{list-style:none;font-size:.82rem;color:var(--navy);padding-left:20px;position:relative}
+.panel-checks li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700}
+.panel-meta{display:flex;gap:10px;margin-bottom:18px}
+.panel-meta-box{flex:1;background:#f5f6f8;border:1px solid var(--border);border-radius:12px;padding:11px 12px;text-align:center}
+.panel-meta-box strong{display:block;font-family:var(--fh);font-size:1.02rem;color:var(--navy)}
+.panel-meta-box span{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.panel-btns{display:flex;flex-direction:column;gap:10px;padding:0 24px 24px}
+.panel-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;background:var(--red);color:#fff;border-radius:100px;font-weight:700;font-size:.92rem;border:none;cursor:pointer;transition:background .2s}
+.panel-cta:hover{background:var(--red-lt)}
+.panel-secondary{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;color:var(--muted);font-size:.8rem;font-weight:600;border-radius:100px;border:1px solid var(--border);background:none;cursor:pointer}
+.panel-secondary:hover{border-color:var(--navy);color:var(--navy)}
+
+/* ---------- Business Brief — an in-experience detail panel, the map stays visible behind it ---------- */
+.brief-overlay{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.brief-overlay.open{pointer-events:auto;opacity:1}
+.brief-backdrop{position:absolute;inset:0;background:rgba(11,21,36,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.brief-panel{position:absolute;background:#fff;box-shadow:-20px 0 60px rgba(0,0,0,.35);overflow-y:auto;
+  bottom:0;left:0;right:0;max-height:88vh;border-radius:20px 20px 0 0;
+  transform:translateY(100%);transition:transform .38s cubic-bezier(.2,.9,.3,1.05)}
+.brief-overlay.open .brief-panel{transform:translateY(0)}
+@media (min-width:860px){
+  .brief-panel{top:0;bottom:0;left:auto;right:0;width:min(480px,92vw);max-height:none;border-radius:0;transform:translateX(100%)}
+  .brief-overlay.open .brief-panel{transform:translateX(0)}
+}
+.brief-close{position:sticky;top:14px;float:right;margin-right:14px;width:34px;height:34px;border-radius:50%;background:#f5f6f8;border:1px solid var(--border);color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;z-index:3}
+.brief-hero{padding:24px 26px 6px;clear:both}
+.brief-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.brief-title{font-family:var(--fh);font-weight:800;font-size:1.5rem;color:var(--navy);margin-bottom:10px;line-height:1.15}
+.brief-desc{font-size:.88rem;color:var(--muted);line-height:1.7}
+.brief-section{padding:18px 26px;border-top:1px solid var(--border)}
+.brief-section h4{font-family:var(--fh);font-weight:800;font-size:.92rem;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.brief-section p{font-size:.84rem;color:var(--muted);line-height:1.7}
+.brief-benefits{display:flex;flex-direction:column;gap:8px}
+.brief-benefits li{list-style:none;font-size:.84rem;color:var(--navy);padding-left:20px;position:relative}
+.brief-benefits li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700}
+.brief-steps{display:flex;flex-direction:column;gap:12px}
+.brief-step{display:flex;gap:12px}
+.brief-step .bs-dot{width:26px;height:26px;border-radius:50%;background:#f5f6f8;border:1.5px solid var(--red);color:var(--red);font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brief-step .bs-t{font-size:.72rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
+.brief-step .bs-d{font-size:.83rem;color:var(--navy);line-height:1.55}
+.brief-included{display:flex;flex-direction:column;gap:8px}
+.brief-included li{list-style:none;font-size:.84rem;color:var(--navy);padding-left:20px;position:relative}
+.brief-included li::before{content:'—';position:absolute;left:0;color:var(--muted)}
+.brief-price{background:#f5f6f8;border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:.84rem;color:var(--navy);line-height:1.6}
+.brief-faq details{border-bottom:1px solid var(--border);padding:12px 0}
+.brief-faq details:last-child{border-bottom:none}
+.brief-faq summary{cursor:pointer;font-size:.86rem;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.brief-faq summary::after{content:'+';color:var(--red);font-size:1.1rem;font-weight:400;flex-shrink:0}
+.brief-faq details[open] summary::after{content:'−'}
+.brief-faq summary::-webkit-details-marker{display:none}
+.brief-faq p{font-size:.82rem;color:var(--muted);line-height:1.65;margin-top:10px}
+.brief-cta{padding:22px 26px 30px}
+.brief-cta button{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;background:var(--red);color:#fff;border-radius:100px;font-weight:700;font-size:.92rem;border:none;cursor:pointer;transition:background .2s}
+.brief-cta button:hover{background:var(--red-lt)}
+
+/* keyboard hint */
+.kbd-hint{position:absolute;bottom:14px;right:14px;z-index:20;display:flex;gap:5px;opacity:0;transition:opacity .4s}
+.kbd-hint.show{opacity:1}
+.kbd-hint kbd{background:rgba(14,27,46,.7);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:3px 7px;font-size:.66rem;font-family:var(--mono,monospace)}
+@media (hover:none) and (pointer:coarse){ .kbd-hint{display:none} } /* no physical keyboard on touch devices */
+
+/* comparison overlay */
+.compare-overlay{position:fixed;inset:0;z-index:55;pointer-events:none;opacity:0;transition:opacity .3s ease;display:flex;align-items:center;justify-content:center;padding:20px}
+.compare-overlay.open{pointer-events:auto;opacity:1}
+.compare-backdrop{position:absolute;inset:0;background:rgba(11,21,36,.5);backdrop-filter:blur(6px)}
+.compare-card{position:relative;background:#fff;border-radius:20px;width:100%;max-width:640px;max-height:86vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.5);transform:scale(.94);transition:transform .3s cubic-bezier(.2,.9,.3,1.1)}
+.compare-overlay.open .compare-card{transform:scale(1)}
+.compare-close{position:sticky;top:14px;float:right;margin-right:14px;width:34px;height:34px;border-radius:50%;background:#f5f6f8;border:1px solid var(--border);color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;z-index:3}
+.compare-head{padding:24px 26px 10px;clear:both}
+.compare-head h3{font-family:var(--fh);font-weight:800;font-size:1.25rem;color:var(--navy)}
+.compare-pick{padding:10px 26px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.compare-pick label{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--navy);background:#f5f6f8;border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer}
+.compare-pick input:disabled ~ span{color:var(--muted)}
+@media (max-width:480px){ .compare-pick{grid-template-columns:1fr 1fr;padding-left:16px;padding-right:16px} }
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th,.compare-table td{padding:12px 16px;text-align:left;font-size:.82rem;border-bottom:1px solid var(--border);vertical-align:top}
+.compare-table th{color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700;width:120px}
+.compare-table td strong{display:block;color:var(--navy);font-family:var(--fh);margin-bottom:2px}
+.compare-cta{padding:20px 26px 26px;display:flex;gap:10px}
+.compare-cta button{flex:1;padding:13px;border-radius:100px;font-weight:700;font-size:.82rem;border:1px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.compare-cta button:hover{border-color:var(--red);color:var(--red)}
+
+/* journey form */
+.journey{padding:26px 24px 24px}
+.journey-progress{display:flex;gap:5px;margin-bottom:22px}
+.journey-progress span{flex:1;height:3px;border-radius:3px;background:var(--border)}
+.journey-progress span.done{background:var(--red)}
+.journey-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.journey-q{font-family:var(--fh);font-weight:800;font-size:1.15rem;color:var(--navy);margin-bottom:16px;line-height:1.25}
+.journey input{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;margin-bottom:14px}
+.journey input:focus{outline:none;border-color:var(--red)}
+.journey-next{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;background:var(--red);color:#fff;border-radius:100px;font-weight:700;font-size:.92rem;border:none;cursor:pointer}
+.journey-next:hover{background:var(--red-lt)}
+.journey-back{display:block;text-align:center;margin-top:12px;font-size:.78rem;color:var(--muted);cursor:pointer;background:none;border:none}
+.journey-ack{font-size:.82rem;color:var(--navy);background:#f5f6f8;border-radius:12px;padding:12px 14px;margin-bottom:16px}
+
+/* (legacy full-page arrival screen removed — the welcome message now lives inside the 3D HQ gate plaque) */
+
+/* Cinematic opening — plays once before the existing gate screen, does not alter anything after it */
+#cineIntro{position:absolute;inset:0;z-index:60;opacity:1;transition:opacity 1s ease;pointer-events:none}
+#cineIntro.fade{opacity:0}
+.cine-veil{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 0%,rgba(11,21,36,.35) 55%,rgba(11,21,36,.8) 100%)}
+.cine-caption{position:absolute;left:0;right:0;bottom:16%;text-align:center;padding:0 24px}
+.cine-caption .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#ffb8c2;opacity:0;transition:opacity 1s ease}
+.cine-caption .line{font-family:var(--fh);font-style:italic;font-weight:500;color:#fdfaf3;font-size:clamp(1.5rem,4.4vw,2.4rem);margin-top:12px;opacity:0;transform:translateY(10px);transition:opacity 1.1s ease,transform 1.1s ease}
+.cine-caption.show .eyebrow{opacity:1}
+.cine-caption.show .line{opacity:1;transform:translateY(0)}
+#cineSkip{position:absolute;bottom:26px;right:26px;z-index:61;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:10px 20px;border-radius:100px;cursor:pointer;pointer-events:auto}
+#cineSkip:hover{background:rgba(255,255,255,.16)}
+
+.perf-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:20;color:rgba(255,255,255,.55);background:rgba(14,27,46,.55);backdrop-filter:blur(6px);padding:6px 14px;border-radius:100px;font-size:.68rem;opacity:0;transition:opacity .4s}
+.perf-hint.show{opacity:1}
+
+.offscreen-arrow{position:absolute;z-index:22;display:none;align-items:center;gap:7px;background:rgba(14,27,46,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,184,194,.4);color:#fff;padding:8px 14px 8px 10px;border-radius:100px;font-size:.72rem;font-weight:700;cursor:pointer;transform:translate(-50%,-50%);white-space:nowrap;transition:opacity .3s}
+.offscreen-arrow.show{display:flex}
+.oa-ico{display:inline-block;color:#ffb8c2;font-size:.95rem;transition:transform .15s linear}
+
+/* journey-in-progress label */
+/* cinematic travel captions — clean, no letterbox bars */
+
+.route-hint{position:absolute;bottom:0;left:0;right:0;z-index:25;display:flex;flex-direction:column;align-items:center;padding:0 24px 40px;opacity:0;transition:opacity .6s;pointer-events:none}
+.route-hint.show{opacity:1}
+.route-hint .rule{width:38px;height:1px;background:rgba(255,184,194,.7);margin-bottom:12px}
+.route-hint .from{color:rgba(255,255,255,.5);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.route-hint .to{color:#fff;font-family:var(--fh);font-weight:800;font-size:1.15rem;letter-spacing:.01em}
+
+/* HQ arrival — same restrained caption language as the opening cinematic, no physical gate graphic */
+.hq-arrival{position:absolute;inset:0;z-index:38;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(ellipse at 50% 50%,rgba(11,21,36,.35),rgba(11,21,36,.82));opacity:0;pointer-events:none;transition:opacity .6s}
+.hq-arrival.show{opacity:1;pointer-events:auto}
+.hq-arrival-in{max-width:420px}
+.hq-arrival .eyebrow{color:#ffb8c2;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;opacity:0;transition:opacity 1s ease}
+.hq-arrival .title{font-family:var(--fh);font-style:italic;font-weight:500;color:#fff;font-size:clamp(1.5rem,4vw,2.1rem);margin-bottom:14px;opacity:0;transform:translateY(8px);transition:opacity 1s ease,transform 1s ease}
+.hq-arrival .sub{color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.7;margin-bottom:22px;opacity:0;transition:opacity 1s ease}
+.hq-arrival.in .eyebrow,.hq-arrival.in .sub{opacity:1}
+.hq-arrival.in .title{opacity:1;transform:translateY(0)}
+
+/* journey summary — boarding-pass style confirmation card */
+.summary-card{background:#fff;color:#0e1b2e;border-radius:12px;text-align:left;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);margin-bottom:24px;opacity:0;transform:translateY(10px);transition:opacity .8s ease .2s,transform .8s ease .2s}
+.hq-arrival.in .summary-card{opacity:1;transform:translateY(0)}
+.summary-route{display:flex;align-items:center;gap:8px;padding:18px 20px 14px;border-bottom:1px dashed #e2e6ec}
+.summary-route .pt{font-size:.68rem;font-weight:700;letter-spacing:.02em;flex:1}
+.summary-route .pt.mid{text-align:center;color:#b22234}
+.summary-route .pt.end{text-align:right}
+.summary-route .ln{flex:1.4;height:1px;background:repeating-linear-gradient(90deg,#c7ccd6 0 4px,transparent 4px 8px);position:relative}
+.summary-route .ln::after{content:'✈';position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);font-size:.7rem;color:#b22234}
+.summary-details{padding:16px 20px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.summary-details div span{display:block;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:#8891a0;margin-bottom:3px}
+.summary-details div strong{display:block;font-size:.84rem;font-weight:700;word-break:break-word}
+
+.hq-arrival-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:14px 28px;border-radius:100px;font-weight:700;font-size:.85rem;border:none;cursor:pointer;opacity:0;transition:opacity 1s ease .3s,background .2s}
+.hq-arrival.in .hq-arrival-btn{opacity:1}
+.hq-arrival-btn:hover{background:var(--red-lt)}
+
+.about-albtaa{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:14px 16px;text-align:left;margin-bottom:20px;opacity:0;transition:opacity 1s ease .1s}
+.hq-arrival.in .about-albtaa{opacity:1}
+.about-albtaa .aa-eyebrow{color:var(--gold-lt,#ffb8c2);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.about-albtaa p{color:rgba(255,255,255,.72);font-size:.78rem;line-height:1.6}
+
+/* automatic confirmation — the data is already sent, this just reassures */
+.confirm-block{display:flex;align-items:center;gap:10px;justify-content:center;background:rgba(94,196,140,.12);border:1px solid rgba(94,196,140,.35);border-radius:100px;padding:12px 18px;margin-bottom:18px;opacity:0;transition:opacity .8s ease .3s}
+.hq-arrival.in .confirm-block{opacity:1}
+.confirm-tick{width:20px;height:20px;border-radius:50%;background:#3fae76;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;flex-shrink:0}
+.confirm-text{color:#bdf0d3;font-size:.78rem;font-weight:600}
+
+/* WhatsApp — a quiet, optional invitation for those who want to skip the wait */
+.whatsapp-offer{opacity:0;transition:opacity .9s ease .5s}
+.hq-arrival.in .whatsapp-offer{opacity:1}
+.wo-divider{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.35);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.wo-divider span{flex:1;height:1px;background:rgba(255,255,255,.16)}
+.wo-copy{color:rgba(255,255,255,.6);font-size:.8rem;line-height:1.6;margin-bottom:14px}
+.wo-btn{display:flex;align-items:center;gap:12px;width:100%;background:linear-gradient(135deg,#1fa855,#178a46);border:none;border-radius:14px;padding:13px 16px;cursor:pointer;text-align:left;transition:transform .18s ease,box-shadow .18s ease}
+.wo-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(31,168,85,.35)}
+.wo-ico{font-size:1.4rem;background:rgba(255,255,255,.18);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wo-txt{display:flex;flex-direction:column}
+.wo-txt strong{color:#fff;font-size:.86rem;font-weight:800}
+.wo-txt small{color:rgba(255,255,255,.85);font-size:.7rem;margin-top:2px}
+</style>
+</head>
+<body>
+
+<noscript>
+<div style="max-width:720px;margin:60px auto;padding:24px;font-family:sans-serif;color:#0e1b2e">
+<h1>Albania Business Navigator — ALBTAA</h1>
+<p>Explore six real paths to registering a company in Albania. Each takes 3–5 business days, is fully remote, 100% foreign-owned, and starts from €250 + VAT.</p>
+<h2>Tech Startup Company in Albania</h2>
+<p>Register an SHPK for SaaS, custom development or IT services — 0% CIT eligibility on qualifying export income.</p>
+<h2>Investment &amp; Holding Company in Albania</h2>
+<p>Structure an SHPK to hold shares in subsidiaries, deploy capital, or invest in Albanian real estate.</p>
+<h2>Import Export Company in Albania</h2>
+<p>Register an SHPK for cross-border trading via the Port of Durrës, with access to EU, Balkan and Adriatic markets.</p>
+<h2>Consulting Company in Albania</h2>
+<p>Register an SHPK for strategy, management or specialised advisory work — built for solo consultants and small firms.</p>
+<h2>Engineering Company in Albania</h2>
+<p>Register an SHPK for technical, industrial or design engineering services.</p>
+<p>This page uses an interactive map that requires JavaScript. Please enable JavaScript, or visit <a href="https://albtaa.com">albtaa.com</a> to contact Albtaa directly.</p>
+</div>
+</noscript>
+
+<div class="experience" id="experience">
+
+<div class="concept-flag">CONCEPT PREVIEW — real satellite imagery &amp; real 3D buildings of Tirana &amp; Durrës, powered by MapTiler. Not final visual style.</div>
+
+<div id="map"></div>
+
+<div id="cineIntro">
+<div class="cine-veil"></div>
+<div class="cine-caption" id="cineCaption">
+  <div class="eyebrow" id="cineEyebrow">Somewhere in Europe</div>
+  <div class="line" id="cineLine">We're opening the gate for you.</div>
+</div>
+<button id="cineSkip" type="button">Skip intro</button>
+</div>
+
+<div class="topbar" id="topbar">
+<a class="chip" href="#">← Albtaa.com</a>
+<div style="display:flex;gap:10px;position:relative">
+  <button class="chip" id="aboutChip" type="button">ⓘ What is this?</button>
+  <button class="chip" id="compareChip" type="button">⚖ Compare</button>
+  <button class="chip" id="resetView" type="button">🧭 Reset map</button>
+  <div class="about-popover" id="aboutPopover">
+    <div class="ap-eyebrow">Albania Business Navigator</div>
+    <p>Every marker on this map is a real business path. Pick one, and Albtaa's team drives your registration to a real company in 3–5 days — from anywhere in the world.</p>
+    <div class="ap-stat-row">
+      <div><b>6</b><span>Business paths</span></div>
+      <div><b>3–5d</b><span>Setup time</span></div>
+      <div><b>100%</b><span>Remote</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="route-hint" id="routeHint">
+  <div class="rule"></div>
+  <div class="from" id="routeHintFrom">Departing Rinas International Airport</div>
+  <div class="to" id="routeHintTo">Traveling to Tech Startup City</div>
+</div>
+
+<div class="hq-arrival" id="hqArrival">
+<div class="hq-arrival-in">
+  <div class="eyebrow">Arriving at</div>
+  <div class="title">ALBTAA HQ</div>
+  <div class="sub" id="hqArrivalWelcome" style="margin-bottom:6px;font-weight:600;color:#fff">Welcome, friend.</div>
+  <div class="sub" id="hqArrivalSub">We're ready to open the door for your business in Albania.</div>
+  <div class="summary-card" id="summaryCard"></div>
+  <div class="about-albtaa">
+    <div class="aa-eyebrow">Who is Albtaa</div>
+    <p id="aboutAlbtaaText">Albtaa registers foreign-owned companies in Albania end-to-end — legal filing, tax ID, and ongoing compliance, handled remotely by a local team in Tirana.</p>
+  </div>
+  <div class="confirm-block" id="confirmBlock">
+    <div class="confirm-tick">✓</div>
+    <div class="confirm-text" id="dataSentNote">Your details are on their way to our team.</div>
+  </div>
+  <div class="whatsapp-offer">
+    <div class="wo-divider"><span></span>or<span></span></div>
+    <div class="wo-copy" id="woCopy">Rather not wait? Skip the queue — talk to Albtaa right now.</div>
+    <button class="wo-btn" id="hqWhatsappBtn" type="button">
+      <span class="wo-ico">💬</span>
+      <span class="wo-txt">
+        <strong id="woTitle">Chat with us on WhatsApp</strong>
+        <small id="woSub">Real answers, no bots</small>
+      </span>
+    </button>
+  </div>
+</div>
+</div>
+
+<div class="welcome" id="welcome">
+<div class="welcome-card">
+<div class="welcome-eyebrow" id="welcomeEyebrow">Arriving at</div>
+<div class="welcome-title" id="welcomeTitle">Tech Startup City</div>
+<div class="welcome-sub" id="welcomeSub">Build your technology company in Albania with Albtaa.</div>
+<div class="welcome-geo" id="welcomeGeo">41.3223°N, 19.8115°E</div>
+</div>
+</div>
+
+<div class="panel" id="panel">
+<div class="panel-card" id="panelCard"></div>
+</div>
+
+<div class="brief-overlay" id="briefOverlay">
+<div class="brief-backdrop" id="briefBackdrop"></div>
+<div class="brief-panel" id="briefPanel"></div>
+</div>
+
+<div class="compare-overlay" id="compareOverlay">
+<div class="compare-backdrop" id="compareBackdrop"></div>
+<div class="compare-card" id="compareCard"></div>
+</div>
+
+<div class="kbd-hint" id="kbdHint">
+  <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><kbd>5</kbd><kbd>6</kbd> jump to a business path
+</div>
+
+<div class="perf-hint" id="perfHint">Drag to look around · Scroll to zoom · Right-click drag to tilt</div>
+
+<div class="offscreen-arrow" id="tradeArrow">
+  <span class="oa-ico" id="tradeArrowIco">↑</span>
+  <span class="oa-label">Import Export City</span>
+</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+if(typeof maplibregl === 'undefined'){
+  document.getElementById('map').innerHTML =
+    '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ffb8c2;background:#0b1524;font-family:sans-serif;text-align:center;padding:24px;">'+
+    'Map library failed to load from the CDN.<br/>Check your internet connection and reload.</div>';
+  return;
+}
+
+/* ---------- Real Albanian coordinates ---------- */
+var HQ = {lng:19.8130, lat:41.3202, name:'ALBTAA HQ', place:'Rruga Andon Zako Çajupi, Blloku, Tirana'};
+var RINAS = {lng:19.7206, lat:41.4147, name:'Rinas — Tirana International Airport'};
+/* wide establishing view — includes the Tirana cluster AND Durrës (Import Export City), aerial pitch */
+var TIRANA_VIEW = {center:[HQ.lng, HQ.lat], zoom:14, pitch:55, bearing:-17};
+
+var CITIES = [
+  {id:'tech', name:'Tech Startup City', short:'Tech Startup', place:'Blloku, Tirana',
+   lng:19.8115, lat:41.3223,
+   title:'Tech Startup in Albania', href:'software-company-albania.html',
+   desc:'Register an SHPK for SaaS, custom development or IT services — remote setup, 0% CIT eligibility, and a developer talent pool built for EU-facing product teams.',
+   checks:['100% foreign ownership','Remote process, no travel required','Company registration & tax ID','Ongoing accounting support'],
+   seoTag:'Software / SaaS / IT Company',
+   whyAlbania:'Albania offers 0% corporate income tax on qualifying software and IT export income, a growing pool of English-speaking developers, and EU-adjacent time zones — so your team overlaps naturally with clients in Berlin, Milan or London.',
+   steps:[
+     {t:'Day 1', d:'Name reservation, SHPK drafting, and document collection (remote, e-signature).'},
+     {t:'Day 2–3', d:'Filing with the National Business Center (QKB) and tax authority registration.'},
+     {t:'Day 4–5', d:'NIPT (tax ID) issued, bank account application opened, documents couriered to you.'}
+   ],
+   included:['SHPK company formation & QKB filing','Tax ID (NIPT) registration','Registered office address for year 1','Bank account application support','First-year accounting onboarding'],
+   priceDetail:'From €250 + VAT for formation. Ongoing monthly accounting starts at €120/month depending on transaction volume.',
+   pricing:{formationFee:250, monthlyBase:120, perEmployee:35},
+   faq:[
+     {q:'Do I need to live in Albania?', a:'No. The entire process — signing, filing, and bank account setup — can be completed remotely with power of attorney, though opening some banks may request one video call.'},
+     {q:'Can I qualify for 0% CIT?', a:'Software development and IT export income can qualify for a reduced/0% CIT rate under current incentive rules; Albtaa reviews your specific revenue structure before you commit.'},
+     {q:'How fast can I actually invoice clients?', a:'Most clients have a signed SHPK and NIPT within 3–5 business days, and can invoice as soon as the tax ID is issued.'}
+   ]},
+  {id:'invest', name:'Investment City', short:'Investment', place:'Zone Blu, Tirana',
+   lng:19.8225, lat:41.3390,
+   title:'Investment & Holding Company in Albania', href:'investment-company-albania.html',
+   desc:'Structure an SHPK to hold shares in subsidiaries, deploy capital, or invest in Albanian real estate — a single, foreign-owned entity with straightforward reporting.',
+   checks:['Hold shares, IP & subsidiaries','0% CIT on qualifying income','No local partner required','Straightforward shareholder reporting'],
+   seoTag:'Holding / Investment / Real Estate Structure',
+   whyAlbania:'A stable, EU-candidate jurisdiction with a straightforward company code, no restriction on foreign shareholding, and a fast-growing real estate and business landscape — an efficient base for deploying capital into the region.',
+   steps:[
+     {t:'Day 1–2', d:'Corporate structure design, shareholder documentation, SHPK drafting.'},
+     {t:'Day 3–4', d:'QKB filing and tax registration.'},
+     {t:'Day 5–6', d:'NIPT issued; asset/shareholding documentation finalised with your advisor.'}
+   ],
+   included:['SHPK formation & QKB filing','Tax ID (NIPT) registration','Shareholder & capital structure documentation','Registered office address for year 1','Annual shareholder reporting setup'],
+   priceDetail:'From €250 + VAT for formation. Structuring for multiple subsidiaries or real estate holdings is quoted individually after a short call.',
+   pricing:{formationFee:250, monthlyBase:150, perEmployee:0},
+   faq:[
+     {q:'Can the company hold shares in businesses outside Albania?', a:'Yes. An Albanian SHPK can hold equity in foreign subsidiaries; cross-border tax treatment depends on your home country and is worth a short call with our team.'},
+     {q:'Is a local director required?', a:'No — 100% foreign ownership and foreign directorship is permitted.'},
+     {q:'Can this structure buy real estate?', a:'Yes, Albanian companies can acquire property; foreign individuals face some restrictions that a locally registered company does not.'}
+   ]},
+  {id:'holding', name:'Holding City', short:'Holding', place:'Rruga e Kavajës, Tirana',
+   lng:19.8340, lat:41.3315,
+   title:'Holding Company in Albania', href:'investment-company-albania.html',
+   desc:'Set up an SHPK holding structure that owns shares in subsidiaries or intellectual property across borders — clean ownership, simple to administer.',
+   checks:['Holds shares & subsidiaries','Clear ownership structure','No mandatory local partner','100% foreign ownership'],
+   seoTag:'Holding Structure',
+   whyAlbania:'Low administrative overhead, no minimum local ownership requirement, and simple annual reporting make Albania a lean base for a holding entity above operating subsidiaries or IP.',
+   steps:[
+     {t:'Day 1–2', d:'Ownership chart review and SHPK drafting for the holding entity.'},
+     {t:'Day 3–4', d:'QKB filing and tax registration.'},
+     {t:'Day 5–6', d:'NIPT issued; share certificates and ownership documentation finalised.'}
+   ],
+   included:['SHPK formation & QKB filing','Tax ID (NIPT) registration','Ownership/share structure documentation','Registered office address for year 1','Annual filing calendar & reminders'],
+   priceDetail:'From €250 + VAT for formation. Multi-entity ownership charts are scoped individually.',
+   pricing:{formationFee:250, monthlyBase:130, perEmployee:0},
+   faq:[
+     {q:'How is this different from the Investment path?', a:'Holding focuses specifically on clean share ownership of other companies or IP; Investment covers a broader range of capital deployment, including real estate.'},
+     {q:'Do subsidiaries need to be Albanian?', a:'No — the holding entity can own shares in companies incorporated anywhere, subject to that country\'s own rules.'},
+     {q:'What ongoing filings are required?', a:'An annual financial statement and tax filing; Albtaa\'s accounting plan handles this for you.'}
+   ]},
+  {id:'trade', name:'Import Export City', short:'Import Export', place:'Port of Durrës',
+   lng:19.4457, lat:41.3113,
+   title:'Import Export Company in Albania', href:'import-export-company-albania.html',
+   desc:'Register an SHPK for cross-border trading — strategic access to EU, Balkan and Adriatic markets through the real Port of Durrës.',
+   checks:['Strategic EU & Balkan trade routes','Port access via Durrës','Competitive customs environment','VAT & customs registration handled'],
+   seoTag:'Import / Export / Distribution Company',
+   whyAlbania:'The Port of Durrës is the largest on the Albanian Adriatic coast, giving direct sea access to Italy and onward EU distribution, while Albania\'s customs regime and labour costs remain competitive versus neighbouring EU states.',
+   steps:[
+     {t:'Day 1–2', d:'SHPK drafting and trade-activity codes selection (NACE codes).'},
+     {t:'Day 3–4', d:'QKB filing, tax and VAT registration.'},
+     {t:'Day 5', d:'NIPT + customs (EORI-equivalent) registration initiated.'}
+   ],
+   included:['SHPK formation & QKB filing','Tax ID (NIPT) & VAT registration','Customs registration guidance','Registered office address for year 1','Introduction to licensed customs brokers'],
+   priceDetail:'From €250 + VAT for formation. Customs licensing and warehousing setup are quoted separately based on your trade volume.',
+   pricing:{formationFee:250, monthlyBase:160, perEmployee:40},
+   faq:[
+     {q:'Do I need a warehouse to register?', a:'No, but you\'ll need one before actively importing/exporting goods — Albtaa can introduce you to bonded warehouse operators near Durrës.'},
+     {q:'Can I import from outside the EU?', a:'Yes, Albania is not an EU member so it sets its own external tariffs — this can be an advantage for certain non-EU sourcing.'},
+     {q:'How long until I can clear my first shipment?', a:'Once NIPT and customs registration are complete (typically within the first 1–2 weeks), you can begin clearing shipments through a licensed broker.'}
+   ]},
+  {id:'consult', name:'Consulting City', short:'Consulting', place:'Myslym Shyri, Tirana',
+   lng:19.8300, lat:41.3180,
+   title:'Consulting Company in Albania', href:'consulting-company-albania.html',
+   desc:'Register an SHPK for strategy, management or specialised advisory work — a fast, remote-friendly setup for solo consultants and small firms.',
+   checks:['Serve EU & regional clients','Fast, remote-friendly setup','0% CIT for qualifying revenue','Built for solo & small firms'],
+   seoTag:'Business Consulting / Professional Services',
+   whyAlbania:'A low-overhead base with 0% CIT eligibility on qualifying service export income, no minimum staff requirement, and same time zone as most of continental Europe — ideal for solo consultants and small advisory teams.',
+   steps:[
+     {t:'Day 1', d:'SHPK drafting and service-scope documentation.'},
+     {t:'Day 2–3', d:'QKB filing and tax registration.'},
+     {t:'Day 4', d:'NIPT issued; ready to invoice.'}
+   ],
+   included:['SHPK company formation & QKB filing','Tax ID (NIPT) registration','Registered office address for year 1','Invoice template & basic bookkeeping setup','First-year accounting onboarding'],
+   priceDetail:'From €250 + VAT for formation. Solo-consultant accounting plans start at €90/month.',
+   pricing:{formationFee:250, monthlyBase:90, perEmployee:30},
+   faq:[
+     {q:'Can I run this as a one-person company?', a:'Yes — a single foreign shareholder/director is sufficient, no minimum headcount.'},
+     {q:'Can I invoice clients in EUR or USD?', a:'Yes, Albanian companies can hold and invoice in foreign currency accounts.'},
+     {q:'What counts as "qualifying" income for the tax incentive?', a:'Broadly, service income billed to clients outside Albania; Albtaa reviews your client mix before registration to confirm eligibility.'}
+   ]},
+  {id:'eng', name:'Engineering City', short:'Engineering', place:'Kombinat, Tirana',
+   lng:19.7950, lat:41.3410,
+   title:'Engineering Company in Albania', href:'engineering-company-albania.html',
+   desc:'Register an SHPK for technical, industrial or design engineering services — competitive costs and a skilled technical talent pool.',
+   checks:['Skilled technical talent pool','Competitive team costs','Growing industrial demand','100% foreign ownership'],
+   seoTag:'Engineering / Technical Services Company',
+   whyAlbania:'A growing pool of technical and engineering graduates, competitive salary levels versus Western Europe, and rising industrial/infrastructure demand make Albania a practical base for a technical services or design team.',
+   steps:[
+     {t:'Day 1–2', d:'SHPK drafting and activity-code selection for your engineering discipline.'},
+     {t:'Day 3–4', d:'QKB filing and tax registration.'},
+     {t:'Day 5', d:'NIPT issued; ready to hire and contract.'}
+   ],
+   included:['SHPK company formation & QKB filing','Tax ID (NIPT) registration','Registered office address for year 1','Guidance on technical licensing where required','First-year accounting onboarding'],
+   priceDetail:'From €250 + VAT for formation. Team hiring support and payroll setup quoted separately.',
+   pricing:{formationFee:250, monthlyBase:140, perEmployee:45},
+   faq:[
+     {q:'Do I need a local licensed engineer on staff?', a:'Certain regulated activities (e.g. construction supervision) require a locally licensed professional; Albtaa flags this during setup if it applies to your activity code.'},
+     {q:'Can I hire local engineers directly?', a:'Yes — once registered, the company can hire locally under standard Albanian labour contracts, which Albtaa can help set up.'},
+     {q:'Is remote/outsourced engineering work eligible for 0% CIT?', a:'Export-oriented technical services can qualify; Albtaa reviews your specific service model before registration.'}
+   ]}
+];
+
+/* ---------- device-aware performance profile ---------- */
+var IS_MOBILE = window.matchMedia('(max-width: 760px)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+var IS_LOW_POWER = IS_MOBILE || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var HAS_WEBGL = (function(){
+  try{
+    var c = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+  }catch(e){ return false; }
+})();
+if(!HAS_WEBGL){
+  document.getElementById('map').innerHTML =
+    '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ffb8c2;background:#0b1524;font-family:sans-serif;text-align:center;padding:24px;">'+
+    'This device/browser doesn\'t support the 3D map (WebGL). Please try a modern browser like Chrome, Safari or Edge.</div>';
+}
+
+/* ---------- Real map: MapLibre GL JS + MapTiler (real satellite imagery + 3D buildings) ---------- */
+var MAPTILER_KEY = 'qsT9fyaMJHLvI613C18e';
+var map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://api.maptiler.com/maps/hybrid/style.json?key=' + MAPTILER_KEY,
+  center: [15, 48],
+  zoom: 3.4,
+  pitch: 0,
+  bearing: 0,
+  maxPitch: 85,
+  antialias: !IS_LOW_POWER,                              /* antialiasing is GPU-expensive — skip on phones/low-power laptops */
+  pixelRatio: Math.min(window.devicePixelRatio || 1, IS_LOW_POWER ? 1.3 : 2), /* caps WebGL canvas resolution on retina/4K screens */
+  refreshExpiredTiles: false
+});
+map.addControl(new maplibregl.NavigationControl({visualizePitch:true}), 'bottom-right');
+
+/* ---------- Cinematic opening: Europe → Albania → Tirana, then straight into the live map ---------- */
+var cineSkipped = false;
+var introEnded = false;
+function endCineIntro(){
+  introEnded = true;
+  document.getElementById('cineIntro').classList.add('fade');
+  document.getElementById('topbar').classList.add('show');
+  document.querySelectorAll('.mk-pre-intro').forEach(function(el){ el.classList.add('reveal'); });
+  var hint = document.getElementById('perfHint');
+  hint.textContent = 'Click a marker to begin your journey';
+  hint.classList.add('show');
+  setTimeout(function(){ hint.classList.remove('show'); }, 4200);
+  if(typeof updateTradeArrow === 'function') updateTradeArrow();
+}
+document.getElementById('cineSkip').addEventListener('click', function(){
+  cineSkipped = true;
+  map.jumpTo(TIRANA_VIEW);
+  endCineIntro();
+});
+
+function playCineIntro(){
+  if(REDUCED_MOTION){
+    map.jumpTo(TIRANA_VIEW);
+    endCineIntro();
+    return;
+  }
+  var cap = document.getElementById('cineCaption');
+  function caption(eyebrow, line){
+    if(cineSkipped) return;
+    cap.classList.remove('show');
+    document.getElementById('cineEyebrow').textContent = eyebrow;
+    document.getElementById('cineLine').textContent = line;
+    requestAnimationFrame(function(){ setTimeout(function(){ cap.classList.add('show'); }, 60); });
+  }
+  caption('Somewhere in Europe', "We're opening the gate for you.");
+  setTimeout(function(){
+    if(cineSkipped) return;
+    map.flyTo({center:[HQ.lng, HQ.lat-0.6], zoom:6.4, pitch:20, bearing:-8, duration:2600, essential:true});
+    caption('Albania — ALBTAA', 'A fast-moving economy, ready for you.');
+  }, 1500);
+  setTimeout(function(){
+    if(cineSkipped) return;
+    map.flyTo(Object.assign({duration:2600, essential:true}, TIRANA_VIEW));
+    caption('Albania — ALBTAA', 'Every service here is a real place.');
+  }, 4100);
+  setTimeout(function(){
+    if(cineSkipped) return;
+    endCineIntro();
+  }, 6600);
+}
+map.once('load', playCineIntro);
+
+map.on('load', function(){
+  /* real terrain elevation — MapTiler high-quality elevation data.
+     Skipped on low-power devices: terrain + hillshade is one of the heaviest GPU costs here. */
+  if(!IS_LOW_POWER){
+    try{
+      if(!map.getSource('terrain-rgb')){
+        map.addSource('terrain-rgb', {
+          type: 'raster-dem',
+          url: 'https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key=' + MAPTILER_KEY,
+          tileSize: 256
+        });
+      }
+      map.setTerrain({ source: 'terrain-rgb', exaggeration: 1.35 });
+      if(!map.getLayer('hillshade')){
+        var beforeWater = map.getLayer('water') ? 'water' : undefined;
+        map.addLayer({ id:'hillshade', type:'hillshade', source:'terrain-rgb',
+          paint:{ 'hillshade-exaggeration':0.4, 'hillshade-shadow-color':'#26344a', 'hillshade-highlight-color':'#f4ead9' } }, beforeWater);
+      }
+    }catch(e){ console.warn('terrain could not be added:', e); }
+  }
+
+  /* real sky + atmosphere — removes the flat "game map" look */
+  try{
+    map.setSky({
+      'sky-color': '#2c4a6e',
+      'sky-horizon-blend': 0.55,
+      'horizon-color': '#bcd3e8',
+      'horizon-fog-blend': 0.6,
+      'fog-color': '#cfe0ee',
+      'fog-ground-blend': 0.7,
+      'atmosphere-blend': ['interpolate',['linear'],['zoom'], 0,1, 10,1, 14,0.3, 17,0]
+    });
+  }catch(e){ /* older MapLibre without sky support — harmless to skip */ }
+
+  /* real directional sunlight so buildings actually shade and pop in 3D */
+  try{
+    map.setLight({ anchor:'map', position:[1.4, 200, 42], color:'#fff3df', intensity:0.55 });
+  }catch(e){}
+
+  /* real 3D buildings — MapTiler's own vector building data, draped over the real satellite imagery above.
+     minzoom is raised on low-power devices so far fewer building polygons are ever extruded/painted. */
+  try{
+    if(!map.getSource('ofm-buildings')){
+      map.addSource('ofm-buildings', { type:'vector', url:'https://api.maptiler.com/tiles/v3/tiles.json?key=' + MAPTILER_KEY });
+    }
+    if(!map.getLayer('3d-buildings')){
+      map.addLayer({
+        id: '3d-buildings',
+        source: 'ofm-buildings',
+        'source-layer': 'building',
+        type: 'fill-extrusion',
+        minzoom: IS_LOW_POWER ? 15.5 : 13,
+        paint: {
+          'fill-extrusion-color': ['interpolate',['linear'],['%',['round',['coalesce',['get','render_height'],6]],7],
+            0,'#e7ddc9', 1,'#d7e0ea', 2,'#dcd0ba', 3,'#c7d3e2', 4,'#e9dfcd', 5,'#bfccdd', 6,'#d4c9b3'],
+          'fill-extrusion-height': ['interpolate',['linear'],['zoom'], 13,0, 15,['coalesce',['get','render_height'],6]],
+          'fill-extrusion-base': ['coalesce',['get','render_min_height'],0],
+          'fill-extrusion-opacity': ['interpolate',['linear'],['zoom'], 15,0, 16,0.4, 18, IS_LOW_POWER?0.65:0.8],
+          'fill-extrusion-vertical-gradient': true
+        }
+      });
+    }
+  }catch(e){ console.warn('3D buildings layer could not be added:', e); }
+
+  /* route line source — a soft, solid light trail along the actual travelled path (no dashed "quest path" look) */
+  map.addSource('route', {type:'geojson', data:{type:'Feature', geometry:{type:'LineString', coordinates:[]}}});
+  map.addLayer({
+    id:'route-glow', type:'line', source:'route',
+    layout:{'line-cap':'round','line-join':'round'},
+    paint:{'line-color':'#b22234','line-width':10,'line-opacity':0.12,'line-blur':5}
+  });
+  map.addLayer({
+    id:'route-line', type:'line', source:'route',
+    layout:{'line-cap':'round','line-join':'round'},
+    paint:{'line-color':'#ffd7dc','line-width':2,'line-opacity':0.55}
+  });
+});
+
+/* ---------- geo helpers ---------- */
+function deg2rad(d){ return d*Math.PI/180; }
+function rad2deg(r){ return r*180/Math.PI; }
+function bearingBetween(a,b){
+  var φ1=deg2rad(a[1]), φ2=deg2rad(b[1]), Δλ=deg2rad(b[0]-a[0]);
+  var y=Math.sin(Δλ)*Math.cos(φ2);
+  var x=Math.cos(φ1)*Math.sin(φ2)-Math.sin(φ1)*Math.cos(φ2)*Math.cos(Δλ);
+  return (rad2deg(Math.atan2(y,x))+360)%360;
+}
+function planarDist(a,b){
+  var dx=(b[0]-a[0])*Math.cos(deg2rad((a[1]+b[1])/2)), dy=(b[1]-a[1]);
+  return Math.sqrt(dx*dx+dy*dy);
+}
+/* shortest-path angle interpolation — turns the camera the short way round, never snaps */
+function angleLerp(current, target, factor){
+  var diff = ((target - current + 540) % 360) - 180;
+  return (current + diff*factor + 360) % 360;
+}
+/* Chaikin corner-cutting — rounds every real-street right angle into a smooth curve,
+   iterated a few times, without leaving the actual route corridor */
+function chaikinSmooth(points, iterations){
+  if(points.length < 3) return points;
+  var pts = points;
+  for(var it=0; it<iterations; it++){
+    var out = [pts[0]];
+    for(var i=0;i<pts.length-1;i++){
+      var p0=pts[i], p1=pts[i+1];
+      out.push([p0[0]*0.75+p1[0]*0.25, p0[1]*0.75+p1[1]*0.25]);
+      out.push([p0[0]*0.25+p1[0]*0.75, p0[1]*0.25+p1[1]*0.75]);
+    }
+    out.push(pts[pts.length-1]);
+    pts = out;
+  }
+  return pts;
+}
+function bezierPoint(p0,p1,p2,t){
+  var mt = 1-t;
+  return [ mt*mt*p0[0]+2*mt*t*p1[0]+t*t*p2[0], mt*mt*p0[1]+2*mt*t*p1[1]+t*t*p2[1] ];
+}
+/* fallback only — used if the real road service is unreachable */
+function fallbackCurve(from, to, samples){
+  var mid=[(from[0]+to[0])/2,(from[1]+to[1])/2];
+  var dx=to[0]-from[0], dy=to[1]-from[1];
+  var len=Math.sqrt(dx*dx+dy*dy)||0.0001;
+  var nx=-dy/len, ny=dx/len, bulge=len*0.22;
+  var ctrl=[mid[0]+nx*bulge, mid[1]+ny*bulge];
+  var pts=[];
+  for(var i=0;i<=samples;i++) pts.push(bezierPoint(from,ctrl,to,i/samples));
+  return pts;
+}
+
+/* ---------- real, road-snapped route via the free public OSRM routing service ---------- */
+function fetchRoadRoute(from, to){
+  var url = 'https://router.project-osrm.org/route/v1/driving/'+from[0]+','+from[1]+';'+to[0]+','+to[1]+'?overview=full&geometries=geojson';
+  return fetch(url).then(function(r){ return r.json(); }).then(function(data){
+    if(data && data.routes && data.routes[0]) return data.routes[0].geometry.coordinates;
+    throw new Error('no route');
+  }).catch(function(){ return fallbackCurve(from, to, 60); });
+}
+
+/* ---------- fly the real camera first-person along the real road ---------- */
+var currentPos = [RINAS.lng, RINAS.lat];
+var flying = false;
+function flyAlongRoute(routePts, opts, onDone){
+  flying = true;
+  opts = opts || {};
+  var duration = opts.duration || 7000;
+  var dest0 = routePts[routePts.length-1];
+
+  if(REDUCED_MOTION){
+    map.jumpTo({center:dest0, zoom:16, pitch:44, bearing:bearingBetween(routePts[0]||dest0, dest0)});
+    map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:routePts}});
+    flying = false;
+    currentPos = dest0;
+    if(onDone) onDone();
+    return;
+  }
+
+  /* Real street routes can loop, U-turn or pass the destination before doubling back
+     (one-way streets, pedestrian zones). To keep the final approach clean and directional,
+     once the path first comes within ~120m of the destination we cut any remaining
+     wandering and finish on a single straight line into the exact point. */
+  var ARRIVAL_RADIUS = 0.0012;
+  var dest = routePts[routePts.length-1];
+  var cutIdx = routePts.length-1;
+  for(var k=0;k<routePts.length;k++){
+    if(planarDist(routePts[k], dest) <= ARRIVAL_RADIUS){ cutIdx = k; break; }
+  }
+  if(cutIdx < routePts.length-1){
+    routePts = routePts.slice(0, cutIdx+1).concat([dest]);
+  }
+
+  /* Real streets turn at sharp right angles — fine for driving, jarring for an aerial "flight".
+     Chaikin corner-cutting rounds every turn into a smooth curve while still following
+     the real streets' actual path, so the camera glides through junctions instead of snapping. */
+  routePts = chaikinSmooth(routePts, 3);
+  dest = routePts[routePts.length-1];
+
+  /* precompute cumulative arc length so travel speed is even along uneven road points */
+  var cum = [0];
+  for(var i=1;i<routePts.length;i++) cum.push(cum[i-1] + planarDist(routePts[i-1], routePts[i]));
+  var total = cum[cum.length-1] || 0.0001;
+
+  function pointAtLen(target){
+    for(var i=1;i<cum.length;i++){
+      if(cum[i] >= target){
+        var ratio = (target-cum[i-1])/((cum[i]-cum[i-1])||0.0001);
+        return [ routePts[i-1][0]+(routePts[i][0]-routePts[i-1][0])*ratio, routePts[i-1][1]+(routePts[i][1]-routePts[i-1][1])*ratio ];
+      }
+    }
+    return routePts[routePts.length-1];
+  }
+
+  map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:routePts}});
+
+  document.getElementById('routeHintFrom').textContent = opts.from || '';
+  document.getElementById('routeHintTo').textContent = opts.label || 'Traveling…';
+  var routeHint = document.getElementById('routeHint');
+  setTimeout(function(){ routeHint.classList.add('show'); }, 500);
+
+  var startTime = null;
+  var lookAhead = Math.max(total*0.03, 0.0015);
+  var smoothedBearing = null;
+  function step(ts){
+    if(!startTime) startTime = ts;
+    var t = Math.min(1, (ts-startTime)/duration);
+    var ease = t<0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+
+    var dist = ease*total;
+    var p = pointAtLen(dist);
+    var pAhead = pointAtLen(Math.min(total, dist+lookAhead));
+    /* in the final stretch, always face the fixed destination directly — no tangent noise */
+    var targetBearing = (total-dist < lookAhead*2.5) ? bearingBetween(p, dest) : bearingBetween(p, pAhead);
+    if(smoothedBearing === null) smoothedBearing = targetBearing;
+    smoothedBearing = angleLerp(smoothedBearing, targetBearing, 0.09);
+
+    /* first-person "windshield" camera: elevated enough to keep sky/horizon visible, avoids clipping into nearby buildings */
+    var arriveEase = Math.max(0, (t-0.86)/0.14);
+    var pitch = 45 - arriveEase*10;
+    var zoom = 16.6 - arriveEase*0.7;
+
+    try{
+      map.jumpTo({center:p, zoom:zoom, pitch:pitch, bearing:smoothedBearing});
+    }catch(e){ console.warn('camera update skipped a frame:', e); }
+
+    if(t < 1){
+      requestAnimationFrame(step);
+    } else {
+      flying = false;
+      routeHint.classList.remove('show');
+      currentPos = routePts[routePts.length-1];
+      if(onDone) onDone();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function hideHqArrival(){
+  document.getElementById('hqArrival').classList.remove('show','in');
+}
+
+/* ---------- HQ marker (real coordinates) ---------- */
+var hqEl = document.createElement('div');
+hqEl.className = 'mk mk-pre-intro';
+hqEl.innerHTML = '<div class="mk-hq"></div><div class="mk-tag">ALBTAA HQ</div>';
+new maplibregl.Marker({element: hqEl}).setLngLat([HQ.lng, HQ.lat]).addTo(map);
+
+/* ---------- city markers (real coordinates) ---------- */
+CITIES.forEach(function(c){
+  var el = document.createElement('div');
+  el.className = 'mk mk-pre-intro';
+  el.innerHTML = '<div class="mk-dot"></div><div class="mk-tag">'+c.short+'</div>';
+  el.addEventListener('click', function(){ flyToCity(c); });
+  new maplibregl.Marker({element: el}).setLngLat([c.lng, c.lat]).addTo(map);
+});
+
+/* ---------- off-screen indicator: points toward Import Export City (Durrës) when it's out of view ---------- */
+var tradeCity = CITIES.filter(function(c){ return c.id==='trade'; })[0];
+var tradeArrow = document.getElementById('tradeArrow');
+var tradeArrowIco = document.getElementById('tradeArrowIco');
+var arrowUpdateQueued = false;
+function updateTradeArrow(){
+  arrowUpdateQueued = false;
+  if(!introEnded) { tradeArrow.classList.remove('show'); return; }
+  var el = document.getElementById('map');
+  var w = el.clientWidth, h = el.clientHeight;
+  var pt = map.project([tradeCity.lng, tradeCity.lat]);
+  var margin = 64;
+  var visible = pt.x > margin && pt.x < w-margin && pt.y > 90 && pt.y < h-margin;
+  if(visible){ tradeArrow.classList.remove('show'); return; }
+  var cx = w/2, cy = h/2;
+  var dx = pt.x - cx, dy = pt.y - cy;
+  var angle = Math.atan2(dy, dx);
+  var scaleX = (w/2 - margin) / Math.max(1, Math.abs(dx));
+  var scaleY = (h/2 - margin) / Math.max(1, Math.abs(dy));
+  var scale = Math.min(scaleX, scaleY);
+  var ex = cx + dx*scale, ey = cy + dy*scale;
+  tradeArrow.style.left = ex+'px';
+  tradeArrow.style.top = Math.max(90, ey)+'px';
+  tradeArrowIco.style.transform = 'rotate('+(angle*180/Math.PI + 90)+'deg)';
+  tradeArrow.classList.add('show');
+}
+map.on('move', function(){
+  if(arrowUpdateQueued) return;
+  arrowUpdateQueued = true;
+  requestAnimationFrame(updateTradeArrow);
+});
+tradeArrow.addEventListener('click', function(){ if(!flying) flyToCity(tradeCity); });
+
+document.getElementById('aboutChip').addEventListener('click', function(e){
+  e.stopPropagation();
+  document.getElementById('aboutPopover').classList.toggle('show');
+});
+document.addEventListener('click', function(){
+  document.getElementById('aboutPopover').classList.remove('show');
+});
+
+/* ---------- Compare — side-by-side decision table for two business paths ---------- */
+var compareSelection = [];
+function renderComparePicker(){
+  var card = document.getElementById('compareCard');
+  card.innerHTML =
+    '<button class="compare-close" id="compareClose" aria-label="Close">×</button>'+
+    '<div class="compare-head"><h3>Compare two business paths</h3></div>'+
+    '<div class="compare-pick" id="comparePick">'+
+      CITIES.map(function(c){
+        var checked = compareSelection.indexOf(c.id) > -1 ? 'checked' : '';
+        var disabled = (!checked && compareSelection.length>=2) ? 'disabled' : '';
+        return '<label><input type="checkbox" value="'+c.id+'" '+checked+' '+disabled+'/><span>'+c.short+'</span></label>';
+      }).join('') +
+    '</div>'+
+    '<div class="compare-cta"><button id="compareGoBtn" type="button" '+(compareSelection.length===2?'':'disabled')+'>Compare selected →</button></div>';
+  document.getElementById('compareClose').addEventListener('click', closeCompare);
+  card.querySelectorAll('#comparePick input').forEach(function(inp){
+    inp.addEventListener('change', function(){
+      if(inp.checked){ compareSelection.push(inp.value); }
+      else { compareSelection = compareSelection.filter(function(id){ return id!==inp.value; }); }
+      if(compareSelection.length>2) compareSelection.shift();
+      renderComparePicker();
+    });
+  });
+  var goBtn = document.getElementById('compareGoBtn');
+  if(goBtn) goBtn.addEventListener('click', renderCompareTable);
+}
+function renderCompareTable(){
+  var a = CITIES.filter(function(c){return c.id===compareSelection[0];})[0];
+  var b = CITIES.filter(function(c){return c.id===compareSelection[1];})[0];
+  var card = document.getElementById('compareCard');
+  function row(label, av, bv){ return '<tr><th>'+label+'</th><td>'+av+'</td><td>'+bv+'</td></tr>'; }
+  card.innerHTML =
+    '<button class="compare-close" id="compareClose" aria-label="Close">×</button>'+
+    '<div class="compare-head"><h3>'+a.short+' vs '+b.short+'</h3></div>'+
+    '<div style="padding:0 26px 20px;overflow-x:auto">'+
+    '<table class="compare-table">'+
+      '<tr><th></th><td><strong>'+a.short+'</strong>'+a.seoTag+'</td><td><strong>'+b.short+'</strong>'+b.seoTag+'</td></tr>'+
+      row('Setup time', a.steps.length+' stages, ~'+a.steps.length+'-5 days', b.steps.length+' stages, ~'+b.steps.length+'-5 days')+
+      row('From', '€'+a.pricing.formationFee+' + VAT', '€'+b.pricing.formationFee+' + VAT')+
+      row('Monthly accounting', '€'+a.pricing.monthlyBase+'/mo', '€'+b.pricing.monthlyBase+'/mo')+
+      row('Per employee/mo', a.pricing.perEmployee ? '€'+a.pricing.perEmployee : '—', b.pricing.perEmployee ? '€'+b.pricing.perEmployee : '—')+
+      row('Key benefit', a.checks[0], b.checks[0])+
+    '</table></div>'+
+    '<div class="compare-cta">'+
+      '<button id="compareBackBtn" type="button">← Change selection</button>'+
+      '<button id="compareStartA" type="button" style="background:var(--red);color:#fff;border:none">Start '+a.short+' →</button>'+
+    '</div>';
+  document.getElementById('compareClose').addEventListener('click', closeCompare);
+  document.getElementById('compareBackBtn').addEventListener('click', renderComparePicker);
+  document.getElementById('compareStartA').addEventListener('click', function(){ closeCompare(); flyToCity(a); });
+}
+function closeCompare(){
+  document.getElementById('compareOverlay').classList.remove('open');
+}
+document.getElementById('compareChip').addEventListener('click', function(){
+  compareSelection = [];
+  renderComparePicker();
+  document.getElementById('compareOverlay').classList.add('open');
+});
+document.getElementById('compareBackdrop').addEventListener('click', closeCompare);
+
+/* ---------- keyboard navigation: 1–6 jump straight to a business path ---------- */
+document.addEventListener('keydown', function(e){
+  if(flying) return;
+  var tag = (document.activeElement && document.activeElement.tagName) || '';
+  if(tag==='INPUT' || tag==='SELECT' || tag==='TEXTAREA') return;
+  var idx = parseInt(e.key, 10) - 1;
+  if(idx >= 0 && idx < CITIES.length){ flyToCity(CITIES[idx]); }
+});
+setTimeout(function(){
+  var hint = document.getElementById('kbdHint');
+  hint.classList.add('show');
+  setTimeout(function(){ hint.classList.remove('show'); }, 5000);
+}, 6000);
+
+document.getElementById('resetView').addEventListener('click', function(){
+  if(flying) return;
+  map.flyTo(Object.assign({duration:1800}, TIRANA_VIEW));
+  if(map.getSource('route')) map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:[]}});
+  hideHqArrival();
+  document.getElementById('routeHint').classList.remove('show');
+  currentPos = [RINAS.lng, RINAS.lat];
+  closePanel();
+});
+
+/* ---------- fly to a real place on the real map, driving in from Rinas airport ---------- */
+var activeCity = null;
+function flyToCity(c){
+  if(flying) return;
+  activeCity = c;
+
+  fetchRoadRoute([RINAS.lng, RINAS.lat], [c.lng, c.lat]).then(function(routePts){
+    flyAlongRoute(routePts, {
+      duration: 8000,
+      from: 'Departing Rinas International Airport',
+      label: c.name
+    }, function(){
+      document.getElementById('welcomeEyebrow').textContent = 'Arriving at';
+      document.getElementById('welcomeTitle').textContent = c.name;
+      document.getElementById('welcomeSub').textContent = c.place + ' — a real location in Albania.';
+      document.getElementById('welcomeGeo').textContent = c.lat.toFixed(4)+'°N, '+c.lng.toFixed(4)+'°E';
+      var welcome = document.getElementById('welcome');
+      welcome.classList.add('show');
+
+      var faceHQ = bearingBetween([c.lng,c.lat], [HQ.lng,HQ.lat]);
+      map.flyTo({center:[c.lng,c.lat], zoom:16, pitch:44, bearing:faceHQ, duration:1200});
+
+      setTimeout(function(){
+        welcome.classList.remove('show');
+        openPanel(c);
+      }, 1800);
+    });
+  });
+}
+
+function openPanel(c){
+  var card = document.getElementById('panelCard');
+  card.innerHTML =
+    '<button class="panel-close" id="panelClose" aria-label="Close">×</button>'+
+    '<div class="panel-hero">'+
+      '<div class="panel-eyebrow">'+c.seoTag+' · '+c.place+'</div>'+
+      '<div class="panel-title">'+c.title+'</div>'+
+      '<p class="panel-desc">'+c.desc+'</p>'+
+      '<ul class="panel-checks">'+ c.checks.map(function(k){return '<li>'+k+'</li>';}).join('') +'</ul>'+
+      '<div class="panel-meta">'+
+        '<div class="panel-meta-box"><strong>3-5 days</strong><span>Setup time</span></div>'+
+        '<div class="panel-meta-box"><strong>€250+VAT</strong><span>From</span></div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="panel-btns">'+
+      '<button class="panel-cta" id="startJourneyBtn" type="button">Start your journey →</button>'+
+      '<button class="panel-secondary" id="learnMoreBtn" type="button">Learn More</button>'+
+    '</div>';
+  document.getElementById('panel').classList.add('open');
+  document.getElementById('panelClose').addEventListener('click', closePanel);
+  document.getElementById('startJourneyBtn').addEventListener('click', function(){ startJourney(c); });
+  document.getElementById('learnMoreBtn').addEventListener('click', function(){ openBrief(c); });
+}
+function closePanel(){
+  document.getElementById('panel').classList.remove('open');
+  activeCity = null;
+}
+
+/* ---------- Business Brief — full detail panel, map stays visible & blurred behind it ---------- */
+function openBrief(c){
+  var panel = document.getElementById('briefPanel');
+  panel.innerHTML =
+    '<button class="brief-close" id="briefClose" aria-label="Close">×</button>'+
+    '<div class="brief-hero">'+
+      '<div class="brief-eyebrow">'+c.seoTag+' · '+c.place+'</div>'+
+      '<div class="brief-title">'+c.title+'</div>'+
+      '<p class="brief-desc">'+c.desc+'</p>'+
+    '</div>'+
+    '<div class="brief-section">'+
+      '<h4>Why Albania</h4>'+
+      '<p>'+c.whyAlbania+'</p>'+
+    '</div>'+
+    '<div class="brief-section">'+
+      '<h4>Key benefits</h4>'+
+      '<ul class="brief-benefits">'+ c.checks.map(function(k){return '<li>'+k+'</li>';}).join('') +'</ul>'+
+    '</div>'+
+    '<div class="brief-section">'+
+      '<h4>Process & timeline</h4>'+
+      '<div class="brief-steps">'+ c.steps.map(function(s,i){
+        return '<div class="brief-step"><div class="bs-dot">'+(i+1)+'</div><div><div class="bs-t">'+s.t+'</div><div class="bs-d">'+s.d+'</div></div></div>';
+      }).join('') +'</div>'+
+    '</div>'+
+    '<div class="brief-section">'+
+      '<h4>What\'s included</h4>'+
+      '<ul class="brief-included">'+ c.included.map(function(k){return '<li>'+k+'</li>';}).join('') +'</ul>'+
+    '</div>'+
+    '<div class="brief-section">'+
+      '<h4>Pricing</h4>'+
+      '<div class="brief-price">'+c.priceDetail+'</div>'+
+    '</div>'+
+    '<div class="brief-section brief-faq">'+
+      '<h4>Frequently asked questions</h4>'+
+      c.faq.map(function(f){ return '<details><summary>'+f.q+'</summary><p>'+f.a+'</p></details>'; }).join('') +
+    '</div>'+
+    '<div class="brief-cta">'+
+      '<button id="briefStartJourneyBtn" type="button">Start your journey →</button>'+
+    '</div>';
+  document.getElementById('briefOverlay').classList.add('open');
+  document.getElementById('briefClose').addEventListener('click', closeBrief);
+  document.getElementById('briefStartJourneyBtn').addEventListener('click', function(){ closeBrief(); startJourney(c); });
+}
+function closeBrief(){
+  document.getElementById('briefOverlay').classList.remove('open');
+}
+document.getElementById('briefBackdrop').addEventListener('click', closeBrief);
+document.getElementById('panel').addEventListener('click', function(e){ if(e.target.id==='panel') closePanel(); });
+
+/* ---------- i18n: the journey adapts to the visitor's home country ---------- */
+var COUNTRIES = [
+  {name:'Italy', lang:'it'}, {name:'Belgium', lang:'fr'}, {name:'France', lang:'fr'},
+  {name:'Germany', lang:'de'}, {name:'Spain', lang:'es'}, {name:'Netherlands', lang:'nl'},
+  {name:'United Kingdom', lang:'en'}, {name:'United States', lang:'en'}, {name:'Other', lang:'en'}
+];
+var I18N = {
+  en:{ qCountry:'Where are you traveling from?', qName:'First, who are we welcoming to Albania?',
+    qEmail:'Where should we send your registration details?', qPhone:'Best number to reach you on?',
+    qCompany:'What would you like to name your company?', phCountry:'Select your country',
+    phName:'Your full name', phEmail:'you@company.com', phPhone:'+355 or your country code', phCompany:'e.g. Horizon Tech SHPK',
+    cont:'Continue →', back:'← Back', confirm:'Confirm & start journey →',
+    ackWelcome:function(n){return 'Welcome, '+n+". You're getting closer to Albtaa HQ.";},
+    welcomeName:function(n){return 'Welcome, '+n+'.';},
+    ackAlmost:'Almost there — Albtaa HQ is in sight.', arrivingAt:'Arriving at',
+    hqSub:"We're ready to open the door for your business in Albania.", enterBtn:'Enter Albtaa →',
+    lName:'Name', lCompany:'Company', lEmail:'Email', lPhone:'Phone', stepLbl:'Step', ofLbl:'of',
+    aboutText:'Albtaa registers foreign-owned companies in Albania end-to-end — legal filing, tax ID, and ongoing compliance, handled remotely by a local team in Tirana.',
+    bookBtn:'📅 Book a call now', emailBtn:'✉️ Just email me',
+    dataSent:'Your details have been saved and sent to our team',
+    woCopy:"Rather not wait for a reply? Skip the queue and talk to Albtaa right now.",
+    woTitle:'Chat with us on WhatsApp', woSub:'Real answers, no bots' },
+  it:{ qCountry:'Da dove viaggi?', qName:'Prima di tutto, chi stiamo accogliendo in Albania?',
+    qEmail:'Dove inviamo i dettagli della registrazione?', qPhone:'Il miglior numero per contattarti?',
+    qCompany:'Come vuoi chiamare la tua azienda?', phCountry:'Seleziona il tuo paese',
+    phName:'Il tuo nome completo', phEmail:'tu@azienda.com', phPhone:'+355 o il tuo prefisso', phCompany:'es. Horizon Tech SHPK',
+    cont:'Continua →', back:'← Indietro', confirm:'Conferma e inizia il viaggio →',
+    ackWelcome:function(n){return 'Benvenuto, '+n+'. Ti stai avvicinando alla sede di Albtaa.';},
+    welcomeName:function(n){return 'Benvenuto, '+n+'.';},
+    ackAlmost:'Ci siamo quasi — la sede di Albtaa è in vista.', arrivingAt:'Arrivo a',
+    hqSub:'Siamo pronti ad aprirti le porte della tua attività in Albania.', enterBtn:'Entra in Albtaa →',
+    lName:'Nome', lCompany:'Azienda', lEmail:'Email', lPhone:'Telefono', stepLbl:'Passo', ofLbl:'di',
+    aboutText:'Albtaa registra aziende a proprietà estera in Albania in modo completo — pratiche legali, partita IVA e conformità continua, gestite a distanza da un team locale a Tirana.',
+    bookBtn:'📅 Prenota una chiamata', emailBtn:'✉️ Preferisco l\'email',
+    dataSent:'I tuoi dati sono stati salvati e inviati al nostro team',
+    woCopy:'Non vuoi aspettare una risposta? Salta la coda e parla subito con Albtaa.',
+    woTitle:'Scrivici su WhatsApp', woSub:'Risposte vere, non bot' },
+  fr:{ qCountry:'D\'où venez-vous ?', qName:"D'abord, qui accueillons-nous en Albanie ?",
+    qEmail:'Où envoyer les détails de votre inscription ?', qPhone:'Meilleur numéro pour vous joindre ?',
+    qCompany:'Comment voulez-vous nommer votre entreprise ?', phCountry:'Sélectionnez votre pays',
+    phName:'Votre nom complet', phEmail:'vous@entreprise.com', phPhone:'+355 ou votre indicatif', phCompany:'ex. Horizon Tech SHPK',
+    cont:'Continuer →', back:'← Retour', confirm:'Confirmer et commencer le voyage →',
+    ackWelcome:function(n){return 'Bienvenue, '+n+'. Vous vous rapprochez du siège d\'Albtaa.';},
+    welcomeName:function(n){return 'Bienvenue, '+n+'.';},
+    ackAlmost:"Presque arrivé — le siège d'Albtaa est en vue.", arrivingAt:'Arrivée à',
+    hqSub:'Nous sommes prêts à ouvrir la porte de votre entreprise en Albanie.', enterBtn:'Entrer chez Albtaa →',
+    lName:'Nom', lCompany:'Entreprise', lEmail:'E-mail', lPhone:'Téléphone', stepLbl:'Étape', ofLbl:'sur',
+    aboutText:"Albtaa enregistre des entreprises à capitaux étrangers en Albanie de bout en bout — dépôt légal, numéro fiscal et conformité continue, gérés à distance par une équipe locale à Tirana.",
+    bookBtn:'📅 Réserver un appel', emailBtn:'✉️ Juste un e-mail',
+    dataSent:'Vos informations ont été enregistrées et envoyées à notre équipe',
+    woCopy:"Vous préférez ne pas attendre une réponse ? Passez la file et parlez à Albtaa maintenant.",
+    woTitle:'Discutez avec nous sur WhatsApp', woSub:'De vraies réponses, pas de bots' },
+  de:{ qCountry:'Woher reisen Sie an?', qName:'Wen dürfen wir zuerst in Albanien willkommen heißen?',
+    qEmail:'Wohin senden wir Ihre Registrierungsunterlagen?', qPhone:'Beste Telefonnummer, um Sie zu erreichen?',
+    qCompany:'Wie soll Ihr Unternehmen heißen?', phCountry:'Land auswählen',
+    phName:'Ihr vollständiger Name', phEmail:'sie@firma.com', phPhone:'+355 oder Ihre Landesvorwahl', phCompany:'z. B. Horizon Tech SHPK',
+    cont:'Weiter →', back:'← Zurück', confirm:'Bestätigen & Reise starten →',
+    ackWelcome:function(n){return 'Willkommen, '+n+'. Sie kommen der Albtaa-Zentrale näher.';},
+    welcomeName:function(n){return 'Willkommen, '+n+'.';},
+    ackAlmost:'Fast geschafft — die Albtaa-Zentrale ist in Sicht.', arrivingAt:'Ankunft in',
+    hqSub:'Wir sind bereit, die Tür für Ihr Unternehmen in Albanien zu öffnen.', enterBtn:'Zu Albtaa →',
+    lName:'Name', lCompany:'Firma', lEmail:'E-Mail', lPhone:'Telefon', stepLbl:'Schritt', ofLbl:'von',
+    aboutText:'Albtaa registriert Unternehmen in ausländischem Besitz in Albanien vollständig — rechtliche Anmeldung, Steuernummer und laufende Compliance, remote betreut von einem lokalen Team in Tirana.',
+    bookBtn:'📅 Anruf buchen', emailBtn:'✉️ Lieber per E-Mail',
+    dataSent:'Ihre Angaben wurden gespeichert und an unser Team gesendet',
+    woCopy:'Möchten Sie nicht auf eine Antwort warten? Überspringen Sie die Warteschlange und sprechen Sie jetzt mit Albtaa.',
+    woTitle:'Chatten Sie mit uns auf WhatsApp', woSub:'Echte Antworten, keine Bots' },
+  es:{ qCountry:'¿Desde dónde viajas?', qName:'Primero, ¿a quién estamos recibiendo en Albania?',
+    qEmail:'¿Dónde enviamos los detalles de tu registro?', qPhone:'¿Mejor número para contactarte?',
+    qCompany:'¿Cómo quieres llamar a tu empresa?', phCountry:'Selecciona tu país',
+    phName:'Tu nombre completo', phEmail:'tu@empresa.com', phPhone:'+355 o tu prefijo', phCompany:'ej. Horizon Tech SHPK',
+    cont:'Continuar →', back:'← Atrás', confirm:'Confirmar e iniciar el viaje →',
+    ackWelcome:function(n){return 'Bienvenido, '+n+'. Te estás acercando a la sede de Albtaa.';},
+    welcomeName:function(n){return 'Bienvenido, '+n+'.';},
+    ackAlmost:'Casi llegamos — la sede de Albtaa está a la vista.', arrivingAt:'Llegando a',
+    hqSub:'Estamos listos para abrirte la puerta de tu negocio en Albania.', enterBtn:'Entrar a Albtaa →',
+    lName:'Nombre', lCompany:'Empresa', lEmail:'Correo', lPhone:'Teléfono', stepLbl:'Paso', ofLbl:'de',
+    aboutText:'Albtaa registra empresas de propiedad extranjera en Albania de principio a fin — trámites legales, NIF y cumplimiento continuo, gestionados a distancia por un equipo local en Tirana.',
+    bookBtn:'📅 Reservar una llamada', emailBtn:'✉️ Prefiero correo',
+    dataSent:'Tus datos se han guardado y enviado a nuestro equipo',
+    woCopy:'¿Prefieres no esperar una respuesta? Salta la cola y habla con Albtaa ahora mismo.',
+    woTitle:'Chatea con nosotros por WhatsApp', woSub:'Respuestas reales, sin bots' },
+  nl:{ qCountry:'Vanwaar reis je?', qName:'Wie mogen we als eerste verwelkomen in Albanië?',
+    qEmail:'Waar sturen we je registratiegegevens naartoe?', qPhone:'Beste nummer om je te bereiken?',
+    qCompany:'Hoe wil je je bedrijf noemen?', phCountry:'Selecteer je land',
+    phName:'Je volledige naam', phEmail:'jij@bedrijf.com', phPhone:'+355 of je landcode', phCompany:'bijv. Horizon Tech SHPK',
+    cont:'Doorgaan →', back:'← Terug', confirm:'Bevestigen & reis starten →',
+    ackWelcome:function(n){return 'Welkom, '+n+'. Je komt dichter bij het Albtaa-hoofdkantoor.';},
+    welcomeName:function(n){return 'Welkom, '+n+'.';},
+    ackAlmost:'Bijna daar — het Albtaa-hoofdkantoor is in zicht.', arrivingAt:'Aankomst bij',
+    hqSub:'We zijn klaar om de deur te openen voor jouw bedrijf in Albanië.', enterBtn:'Naar Albtaa →',
+    lName:'Naam', lCompany:'Bedrijf', lEmail:'E-mail', lPhone:'Telefoon', stepLbl:'Stap', ofLbl:'van',
+    aboutText:'Albtaa registreert buitenlandse bedrijven in Albanië volledig — juridische indiening, btw-nummer en doorlopende compliance, op afstand geregeld door een lokaal team in Tirana.',
+    bookBtn:'📅 Gesprek boeken', emailBtn:'✉️ Liever per e-mail',
+    dataSent:'Je gegevens zijn opgeslagen en naar ons team gestuurd',
+    woCopy:'Liever niet wachten op een antwoord? Sla de wachtrij over en praat nu met Albtaa.',
+    woTitle:'Chat met ons op WhatsApp', woSub:'Echte antwoorden, geen bots' }
+};
+var currentLang = 'en';
+function t(){ return I18N[currentLang] || I18N.en; }
+
+/* ---------- progressive journey form — each answer moves the real camera closer to HQ ---------- */
+var journeyData = {country:'', name:'', email:'', phone:'', company:''};
+var journeyStep = 0;
+function startJourney(c){
+  journeyStep = 0;
+  currentLang = 'en';
+  journeyData = {country:'', name:'', email:'', phone:'', company:''};
+  renderJourney(c);
+}
+
+function renderJourney(c){
+  var card = document.getElementById('panelCard');
+  card.innerHTML =
+    '<button class="panel-close" id="panelClose" aria-label="Close">×</button>'+
+    '<div class="journey">'+
+      '<div class="journey-progress">'+
+        '<span class="'+(journeyStep>=0?'done':'')+'"></span>'+
+        '<span class="'+(journeyStep>=1?'done':'')+'"></span>'+
+        '<span class="'+(journeyStep>=2?'done':'')+'"></span>'+
+        '<span class="'+(journeyStep>=3?'done':'')+'"></span>'+
+        '<span class="'+(journeyStep>=4?'done':'')+'"></span>'+
+      '</div>'+
+      renderJourneyStep(c)+
+    '</div>';
+  document.getElementById('panelClose').addEventListener('click', closePanel);
+  bindJourneyStep(c);
+
+  /* real camera step: each answer moves you logically closer to HQ — a real aerial approach, always facing HQ */
+  var tt = journeyStep/5;
+  var lng = c.lng + (HQ.lng-c.lng)*tt*0.7;
+  var lat = c.lat + (HQ.lat-c.lat)*tt*0.7;
+  var faceHQ = bearingBetween([lng,lat], [HQ.lng,HQ.lat]);
+  map.flyTo({center:[lng,lat], zoom:15.4+tt*1.6, pitch:38+tt*8, bearing:faceHQ, duration:1500});
+}
+
+function renderJourneyStep(c){
+  var L = t();
+  var stepLabel = function(n){ return '<div class="journey-label">'+L.stepLbl+' '+n+' '+L.ofLbl+' 5'+(n===1?' · '+c.short:'')+'</div>'; };
+  if(journeyStep===0){
+    var opts = COUNTRIES.map(function(co){ return '<option value="'+co.name+'|'+co.lang+'">'+co.name+'</option>'; }).join('');
+    return stepLabel(1)+
+      '<div class="journey-q">'+L.qCountry+'</div>'+
+      '<select id="jCountry" style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;margin-bottom:14px;background:#fff">'+
+      '<option value="">'+L.phCountry+'</option>'+opts+'</select>'+
+      '<button class="journey-next" id="jNext">'+L.cont+'</button>';
+  }
+  if(journeyStep===1){
+    return stepLabel(2)+
+      '<div class="journey-q">'+L.qName+'</div>'+
+      '<input id="jName" placeholder="'+L.phName+'" autocomplete="name" type="text"/>'+
+      '<button class="journey-next" id="jNext">'+L.cont+'</button>'+
+      '<button class="journey-back" id="jBack">'+L.back+'</button>';
+  }
+  if(journeyStep===2){
+    return stepLabel(3)+
+      '<div class="journey-ack">'+L.ackWelcome(esc(journeyData.name || 'there'))+'</div>'+
+      '<div class="journey-q">'+L.qEmail+'</div>'+
+      '<input id="jEmail" placeholder="'+L.phEmail+'" autocomplete="email" type="email"/>'+
+      '<button class="journey-next" id="jNext">'+L.cont+'</button>'+
+      '<button class="journey-back" id="jBack">'+L.back+'</button>';
+  }
+  if(journeyStep===3){
+    return stepLabel(4)+
+      '<div class="journey-ack">'+L.ackAlmost+'</div>'+
+      '<div class="journey-q">'+L.qPhone+'</div>'+
+      '<input id="jPhone" placeholder="'+L.phPhone+'" autocomplete="tel" type="tel"/>'+
+      '<button class="journey-next" id="jNext">'+L.cont+'</button>'+
+      '<button class="journey-back" id="jBack">'+L.back+'</button>';
+  }
+  return stepLabel(5)+
+    '<div class="journey-q">'+L.qCompany+'</div>'+
+    '<input id="jCompany" placeholder="'+L.phCompany+'" type="text"/>'+
+    '<button class="journey-next" id="jNext">'+L.confirm+'</button>'+
+    '<button class="journey-back" id="jBack">'+L.back+'</button>';
+}
+
+function esc(s){ return String(s).replace(/[<>&"]/g, function(ch){ return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[ch]; }); }
+
+function bindJourneyStep(c){
+  var next = document.getElementById('jNext');
+  var back = document.getElementById('jBack');
+  if(next) next.addEventListener('click', function(){
+    if(journeyStep===0){
+      var sel = document.getElementById('jCountry').value;
+      if(sel){
+        var parts = sel.split('|');
+        journeyData.country = parts[0];
+        currentLang = parts[1] || 'en';
+      }
+    }
+    if(journeyStep===1){ journeyData.name = (document.getElementById('jName').value||'').trim(); }
+    if(journeyStep===2){ journeyData.email = (document.getElementById('jEmail').value||'').trim(); }
+    if(journeyStep===3){ journeyData.phone = (document.getElementById('jPhone').value||'').trim(); }
+    if(journeyStep===4){
+      journeyData.company = (document.getElementById('jCompany').value||'').trim();
+      arriveAtHQ(c);
+      return;
+    }
+    journeyStep++;
+    renderJourney(c);
+  });
+  if(back) back.addEventListener('click', function(){
+    journeyStep = Math.max(0, journeyStep-1);
+    renderJourney(c);
+  });
+}
+
+/* ---------- real arrival at Albtaa HQ (Blloku, Tirana) ---------- */
+function arriveAtHQ(c){
+  closePanel();
+  if(flying) return;
+
+  fetchRoadRoute(currentPos, [HQ.lng, HQ.lat]).then(function(routePts){
+    flyAlongRoute(routePts, {
+      duration: 7000,
+      from: activeCity ? ('Departing '+activeCity.name) : 'On the road',
+      label: 'Albtaa HQ'
+    }, function(){
+      var L = t();
+      document.getElementById('hqArrivalWelcome').textContent = L.welcomeName(journeyData.name || 'friend');
+      document.getElementById('hqArrivalSub').textContent = L.hqSub;
+      document.getElementById('aboutAlbtaaText').textContent = L.aboutText;
+      document.getElementById('dataSentNote').textContent = L.dataSent;
+      document.getElementById('woCopy').textContent = L.woCopy;
+      document.getElementById('woTitle').textContent = L.woTitle;
+      document.getElementById('woSub').textContent = L.woSub;
+      var originLabel = journeyData.country ? journeyData.country.toUpperCase() : 'YOUR JOURNEY';
+      document.getElementById('summaryCard').innerHTML =
+        '<div class="summary-route">'+
+          '<div class="pt">'+esc(originLabel)+'<br><span style="font-weight:400;color:#8891a0">Point of origin</span></div>'+
+          '<div class="ln"></div>'+
+          '<div class="pt mid">'+esc(c.short).toUpperCase()+'</div>'+
+          '<div class="ln"></div>'+
+          '<div class="pt end">ALBTAA HQ<br><span style="font-weight:400;color:#8891a0">Blloku</span></div>'+
+        '</div>'+
+        '<div class="summary-details">'+
+          '<div><span>'+L.lName+'</span><strong>'+esc(journeyData.name||'—')+'</strong></div>'+
+          '<div><span>'+L.lCompany+'</span><strong>'+esc(journeyData.company||'—')+'</strong></div>'+
+          '<div><span>'+L.lEmail+'</span><strong>'+esc(journeyData.email||'—')+'</strong></div>'+
+          '<div><span>'+L.lPhone+'</span><strong>'+esc(journeyData.phone||'—')+'</strong></div>'+
+        '</div>';
+      var overlay = document.getElementById('hqArrival');
+      overlay.classList.add('show');
+      requestAnimationFrame(function(){ setTimeout(function(){ overlay.classList.add('in'); }, 60); });
+
+      /* The moment the journey ends, the lead is captured automatically — the
+         WhatsApp option below is purely optional, for visitors who'd rather talk now. */
+      submitLeadData(Object.assign({path: c.short}, journeyData));
+    });
+  });
+
+  document.getElementById('hqWhatsappBtn').onclick = function(){
+    /* ⚠️ concept placeholder number — replace with Albtaa's real WhatsApp Business number */
+    var ALBTAA_WHATSAPP = '355691234567';
+    var msg = 'Hi Albtaa, I just came from the Business Navigator.\n'+
+      'Name: '+journeyData.name+'\nCompany: '+journeyData.company+'\nPath: '+c.short+'\nCountry: '+journeyData.country;
+    window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
+  };
+}
+
+/* ---------- lead capture: fires once, the instant the journey completes ----------
+   CONCEPT STUB — wire these two calls up to real endpoints before going live:
+   1) Google Sheet: create a Google Apps Script Web App bound to your Sheet
+      (Extensions → Apps Script → deploy as Web App, "Anyone" access), then POST here.
+   2) Email: use that same Apps Script (MailApp.sendEmail) or a service like EmailJS/Formspree. */
+function submitLeadData(data, onDone){
+  var GOOGLE_SHEET_WEBHOOK_URL = ''; // e.g. 'https://script.google.com/macros/s/XXXXX/exec'
+  var payload = {
+    timestamp: new Date().toISOString(),
+    name: data.name, email: data.email, phone: data.phone,
+    company: data.company, country: data.country, lang: currentLang, path: data.path
+  };
+  if(GOOGLE_SHEET_WEBHOOK_URL){
+    fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    }).catch(function(e){ console.warn('Lead submission failed:', e); });
+  } else {
+    console.log('[ABN concept] Lead would be sent to Google Sheet + email now:', payload);
+  }
+  if(onDone) setTimeout(onDone, 400);
+}
+
+})();
+</script>
+</body>
+</html>
