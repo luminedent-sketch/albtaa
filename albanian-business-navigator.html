@@ -53,7 +53,6 @@ button{font:inherit}
 #map{position:absolute;inset:0;width:100%;height:100%}
 
 /* concept notice ribbon */
-.concept-flag{position:absolute;top:0;left:0;right:0;z-index:50;background:#111c2d;color:#ffb8c2;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-align:center;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.1)}
 
 /* Intro gate */
 .gate{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(178,34,52,.16),transparent),#0b1524}
@@ -70,6 +69,8 @@ button{font:inherit}
 .topbar{position:absolute;top:max(34px, env(safe-area-inset-top));left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:16px max(18px, env(safe-area-inset-right)) 16px max(18px, env(safe-area-inset-left));pointer-events:none;opacity:0;transition:opacity .4s}
 .topbar.show{opacity:1}
 .chip{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(14,27,46,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);color:#fff;padding:9px 14px;border-radius:100px;font-size:.78rem;font-weight:700;cursor:pointer}
+.chip-cta{background:linear-gradient(135deg,#1fa855,#178a46);border-color:transparent}
+.chip-cta:hover{background:linear-gradient(135deg,#24bb5f,#1a9d51)}
 .chip:hover{background:rgba(14,27,46,.9)}
 
 .about-popover{position:absolute;top:calc(100% + 10px);right:0;width:280px;background:rgba(14,27,46,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:18px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 20px 50px rgba(0,0,0,.4)}
@@ -183,6 +184,8 @@ button{font:inherit}
 .journey-next{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;background:var(--red);color:#fff;border-radius:100px;font-weight:700;font-size:.92rem;border:none;cursor:pointer}
 .journey-next:hover{background:var(--red-lt)}
 .journey-back{display:block;text-align:center;margin-top:12px;font-size:.78rem;color:var(--muted);cursor:pointer;background:none;border:none}
+.journey-privacy{margin-top:16px;font-size:.68rem;color:var(--muted);text-align:center;line-height:1.5}
+.journey-privacy a{color:var(--red);text-decoration:underline}
 .journey-ack{font-size:.82rem;color:var(--navy);background:#f5f6f8;border-radius:12px;padding:12px 14px;margin-bottom:16px}
 
 /* (legacy full-page arrival screen removed — the welcome message now lives inside the 3D HQ gate plaque) */
@@ -299,6 +302,7 @@ button{font:inherit}
 
 <div class="experience" id="experience">
 
+
 <div id="map"></div>
 
 <div id="cineIntro">
@@ -313,6 +317,7 @@ button{font:inherit}
 <div class="topbar" id="topbar">
 <a class="chip" href="#">← Albtaa.com</a>
 <div style="display:flex;gap:10px;position:relative">
+  <button class="chip chip-cta" id="talkToUsChip" type="button">💬 Talk to us</button>
   <button class="chip" id="aboutChip" type="button">ⓘ What is this?</button>
   <button class="chip" id="resetView" type="button">🧭 Reset map</button>
   <div class="about-popover" id="aboutPopover">
@@ -391,10 +396,7 @@ button{font:inherit}
 
 <div class="perf-hint" id="perfHint">Drag to look around · Scroll to zoom · Right-click drag to tilt</div>
 
-<div class="offscreen-arrow" id="tradeArrow">
-  <span class="oa-ico" id="tradeArrowIco">↑</span>
-  <span class="oa-label">Import Export City</span>
-</div>
+<div id="offscreenArrows"></div>
 </div>
 
 <script>
@@ -426,12 +428,15 @@ if(!HAS_WEBGL){
 
 /* ---------- Real Albanian coordinates ---------- */
 var HQ = {lng:19.8130, lat:41.3202, name:'ALBTAA HQ', place:'Rruga Andon Zako Çajupi, Blloku, Tirana'};
+/* ⚠️ concept placeholder — replace with Albtaa's real WhatsApp Business number before launch */
+var ALBTAA_WHATSAPP = '355691234567';
+/* ⚠️ concept placeholder — replace with the real, published privacy policy URL before launch */
+var PRIVACY_POLICY_URL = 'https://albtaa.com/privacy-policy';
 var RINAS = {lng:19.7206, lat:41.4147, name:'Rinas — Tirana International Airport'};
-/* resting/establishing view — on mobile it's zoomed further out so all 6 markers + HQ are visible
-   in the narrower viewport (safe now that heavy 3D terrain/hillshade are already skipped on mobile) */
-var TIRANA_VIEW = IS_MOBILE
-  ? {center:[19.70, 41.335], zoom:9.7, pitch:32, bearing:-8}
-  : {center:[HQ.lng, HQ.lat], zoom:14, pitch:55, bearing:-17};
+/* resting/establishing view — same close, dramatic Tirana view on every device.
+   Markers that fall outside the viewport (especially on narrow phones) get a
+   directional arrow indicator instead of forcing the whole map to zoom out. */
+var TIRANA_VIEW = {center:[HQ.lng, HQ.lat], zoom:14, pitch:55, bearing:-17};
 
 var CITIES = [
   {id:'tech', name:'Tech Startup City', short:'Tech Startup', place:'Blloku, Tirana',
@@ -596,7 +601,7 @@ function endCineIntro(){
   document.getElementById('topbar').classList.add('show');
   document.querySelectorAll('.mk-pre-intro').forEach(function(el){ el.classList.add('reveal'); });
   document.getElementById('orientBanner').classList.add('show');
-  if(typeof updateTradeArrow === 'function') updateTradeArrow();
+  if(typeof updateAllArrows === 'function') updateAllArrows();
 }
 function dismissOrientBanner(){
   document.getElementById('orientBanner').classList.remove('show');
@@ -894,38 +899,74 @@ CITIES.forEach(function(c){
   new maplibregl.Marker({element: el}).setLngLat([c.lng, c.lat]).addTo(map);
 });
 
-/* ---------- off-screen indicator: points toward Import Export City (Durrës) when it's out of view ---------- */
-var tradeCity = CITIES.filter(function(c){ return c.id==='trade'; })[0];
-var tradeArrow = document.getElementById('tradeArrow');
-var tradeArrowIco = document.getElementById('tradeArrowIco');
+/* ---------- off-screen indicators: points toward ANY business path marker that's out of view ---------- */
+var arrowsContainer = document.getElementById('offscreenArrows');
+var cityArrows = {};
+CITIES.forEach(function(c){
+  var el = document.createElement('div');
+  el.className = 'offscreen-arrow';
+  el.innerHTML = '<span class="oa-ico">↑</span><span class="oa-label">'+c.name+'</span>';
+  el.addEventListener('click', function(){ if(!flying) flyToCity(c); });
+  arrowsContainer.appendChild(el);
+  cityArrows[c.id] = {el:el, ico:el.querySelector('.oa-ico'), city:c};
+});
+
 var arrowUpdateQueued = false;
-function updateTradeArrow(){
+function updateAllArrows(){
   arrowUpdateQueued = false;
-  if(!introEnded) { tradeArrow.classList.remove('show'); return; }
-  var el = document.getElementById('map');
-  var w = el.clientWidth, h = el.clientHeight;
-  var pt = map.project([tradeCity.lng, tradeCity.lat]);
+  var mapEl = document.getElementById('map');
+  var w = mapEl.clientWidth, h = mapEl.clientHeight;
   var margin = 64;
-  var visible = pt.x > margin && pt.x < w-margin && pt.y > 90 && pt.y < h-margin;
-  if(visible){ tradeArrow.classList.remove('show'); return; }
   var cx = w/2, cy = h/2;
-  var dx = pt.x - cx, dy = pt.y - cy;
-  var angle = Math.atan2(dy, dx);
-  var scaleX = (w/2 - margin) / Math.max(1, Math.abs(dx));
-  var scaleY = (h/2 - margin) / Math.max(1, Math.abs(dy));
-  var scale = Math.min(scaleX, scaleY);
-  var ex = cx + dx*scale, ey = cy + dy*scale;
-  tradeArrow.style.left = ex+'px';
-  tradeArrow.style.top = Math.max(90, ey)+'px';
-  tradeArrowIco.style.transform = 'rotate('+(angle*180/Math.PI + 90)+'deg)';
-  tradeArrow.classList.add('show');
+
+  if(!introEnded){
+    CITIES.forEach(function(c){ cityArrows[c.id].el.classList.remove('show'); });
+    return;
+  }
+
+  /* first pass: figure out which markers are off-screen and their raw edge position */
+  var offscreen = [];
+  CITIES.forEach(function(c){
+    var a = cityArrows[c.id];
+    var pt = map.project([c.lng, c.lat]);
+    var visible = pt.x > margin && pt.x < w-margin && pt.y > 90 && pt.y < h-margin;
+    if(visible){ a.el.classList.remove('show'); return; }
+    var dx = pt.x - cx, dy = pt.y - cy;
+    var angle = Math.atan2(dy, dx);
+    var scaleX = (w/2 - margin) / Math.max(1, Math.abs(dx));
+    var scaleY = (h/2 - margin) / Math.max(1, Math.abs(dy));
+    var scale = Math.min(scaleX, scaleY);
+    offscreen.push({ a:a, angle:angle, ex: cx+dx*scale, ey: Math.max(90, cy+dy*scale) });
+  });
+
+  /* second pass: nudge indicators apart along the edge if two land too close together */
+  offscreen.sort(function(p,q){ return p.angle - q.angle; });
+  var MIN_GAP = 46;
+  for(var i=1;i<offscreen.length;i++){
+    var prev = offscreen[i-1], cur = offscreen[i];
+    var dist = Math.hypot(cur.ex-prev.ex, cur.ey-prev.ey);
+    if(dist < MIN_GAP){
+      cur.ex += (cur.ex >= prev.ex ? 1 : -1) * (MIN_GAP - dist);
+    }
+  }
+
+  offscreen.forEach(function(o){
+    o.a.el.style.left = o.ex+'px';
+    o.a.el.style.top = o.ey+'px';
+    o.a.ico.style.transform = 'rotate('+(o.angle*180/Math.PI + 90)+'deg)';
+    o.a.el.classList.add('show');
+  });
 }
 map.on('move', function(){
   if(arrowUpdateQueued) return;
   arrowUpdateQueued = true;
-  requestAnimationFrame(updateTradeArrow);
+  requestAnimationFrame(updateAllArrows);
 });
-tradeArrow.addEventListener('click', function(){ if(!flying) flyToCity(tradeCity); });
+
+document.getElementById('talkToUsChip').addEventListener('click', function(){
+  var msg = "Hi Albtaa, I'd like to learn more about registering a company in Albania.";
+  window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
+});
 
 document.getElementById('aboutChip').addEventListener('click', function(e){
   e.stopPropagation();
@@ -1192,6 +1233,7 @@ function renderJourney(c){
         '<span class="'+(journeyStep>=4?'done':'')+'"></span>'+
       '</div>'+
       renderJourneyStep(c)+
+      '<div class="journey-privacy">By continuing, you agree to Albtaa\'s <a href="'+PRIVACY_POLICY_URL+'" target="_blank" rel="noopener">Privacy Policy</a>. We only use your details to process your registration.</div>'+
     '</div>';
   document.getElementById('panelClose').addEventListener('click', resetToStart);
   bindJourneyStep(c);
@@ -1260,7 +1302,13 @@ function bindJourneyStep(c){
       }
     }
     if(journeyStep===1){ journeyData.name = (document.getElementById('jName').value||'').trim(); }
-    if(journeyStep===2){ journeyData.email = (document.getElementById('jEmail').value||'').trim(); }
+    if(journeyStep===2){
+      journeyData.email = (document.getElementById('jEmail').value||'').trim();
+      /* partial lead capture — save now, even if the visitor abandons before finishing */
+      if(journeyData.email){
+        submitLeadData(Object.assign({path: c.short, status:'partial'}, journeyData));
+      }
+    }
     if(journeyStep===3){ journeyData.phone = (document.getElementById('jPhone').value||'').trim(); }
     if(journeyStep===4){
       journeyData.company = (document.getElementById('jCompany').value||'').trim();
@@ -1316,13 +1364,11 @@ function arriveAtHQ(c){
 
       /* The moment the journey ends, the lead is captured automatically — the
          WhatsApp option below is purely optional, for visitors who'd rather talk now. */
-      submitLeadData(Object.assign({path: c.short}, journeyData));
+      submitLeadData(Object.assign({path: c.short, status:'complete'}, journeyData));
     });
   });
 
   document.getElementById('hqWhatsappBtn').onclick = function(){
-    /* ⚠️ concept placeholder number — replace with Albtaa's real WhatsApp Business number */
-    var ALBTAA_WHATSAPP = '355691234567';
     var msg = 'Hi Albtaa, I just came from the Business Navigator.\n'+
       'Name: '+journeyData.name+'\nCompany: '+journeyData.company+'\nPath: '+c.short+'\nCountry: '+journeyData.country;
     window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
@@ -1338,6 +1384,7 @@ function submitLeadData(data, onDone){
   var GOOGLE_SHEET_WEBHOOK_URL = ''; // e.g. 'https://script.google.com/macros/s/XXXXX/exec'
   var payload = {
     timestamp: new Date().toISOString(),
+    status: data.status || 'complete',
     name: data.name, email: data.email, phone: data.phone,
     company: data.company, country: data.country, lang: currentLang, path: data.path
   };
