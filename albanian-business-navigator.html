@@ -81,6 +81,17 @@ button{font:inherit}
 .chip-cta:hover{background:linear-gradient(135deg,#24bb5f,#1a9d51)}
 .chip:hover{background:rgba(14,27,46,.9)}
 
+@media (max-width:600px){
+  .topbar{align-items:flex-start;padding-top:max(14px, env(safe-area-inset-top))}
+  .topbar > a.chip{padding:9px 10px}
+  .topbar > a.chip .chip-label{display:none}
+  .topbar-actions{position:fixed !important;top:auto !important;bottom:96px;right:max(12px, env(safe-area-inset-right));flex-direction:column !important;gap:10px !important;z-index:25}
+  .topbar-actions .chip{width:46px;height:46px;padding:0;justify-content:center;border-radius:50%}
+  .topbar-actions .chip .chip-label{display:none}
+  .topbar-actions .chip-ico{font-size:1.05rem}
+  .about-popover{right:56px;top:auto;bottom:0}
+}
+
 .about-popover{position:absolute;top:calc(100% + 10px);right:0;width:280px;background:rgba(14,27,46,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:18px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 20px 50px rgba(0,0,0,.4)}
 .about-popover.show{opacity:1;transform:translateY(0);pointer-events:auto}
 .ap-eyebrow{color:#ffb8c2;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
@@ -214,12 +225,13 @@ button{font:inherit}
 .perf-hint.show{opacity:1}
 
 /* persistent orientation banner — explains the map's purpose without needing a click, stays until first interaction */
-.orient-banner{position:absolute;top:0;left:0;right:0;z-index:19;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px max(50px, env(safe-area-inset-right)) 12px max(18px, env(safe-area-inset-left));background:linear-gradient(180deg,rgba(11,21,36,.88),rgba(11,21,36,.55) 80%,transparent);opacity:0;transform:translateY(-8px);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
-.orient-banner.show{opacity:1;transform:translateY(0);pointer-events:auto}
-.orient-banner p{color:#fff;font-size:.78rem;font-weight:600;text-align:center;max-width:560px}
-.orient-banner p b{color:#ffb8c2}
-.orient-banner .ob-close{position:absolute;right:10px;top:8px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center}
-@media (max-width:600px){ .orient-banner{top:auto;bottom:0;background:linear-gradient(0deg,rgba(11,21,36,.92),rgba(11,21,36,.6) 80%,transparent);padding-bottom:max(14px, env(safe-area-inset-bottom))} .orient-banner p{font-size:.74rem} }
+.orient-banner{position:absolute;top:calc(max(34px, env(safe-area-inset-top)) + 62px);left:50%;transform:translate(-50%,-8px);z-index:19;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.orient-banner.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.orient-banner .ob-pill{position:relative;display:flex;align-items:center;gap:8px;background:rgba(14,27,46,.82);backdrop-filter:blur(10px);border:1px solid rgba(255,184,194,.4);color:#fff;padding:10px 34px 10px 16px;border-radius:100px;font-size:.8rem;font-weight:700;white-space:nowrap;box-shadow:0 10px 28px rgba(0,0,0,.3)}
+.orient-banner .ob-close{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.14);border:none;color:#fff;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.orient-banner .ob-arrow{color:#ffb8c2;font-size:1rem;animation:obBounce 1.6s ease-in-out infinite}
+@keyframes obBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (max-width:600px){ .orient-banner{top:calc(max(34px, env(safe-area-inset-top)) + 56px)} .orient-banner .ob-pill{font-size:.74rem;padding:9px 30px 9px 14px} }
 
 .offscreen-arrow{position:absolute;z-index:22;display:none;align-items:center;gap:7px;background:rgba(14,27,46,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,184,194,.4);color:#fff;padding:8px 14px 8px 10px;border-radius:100px;font-size:.72rem;font-weight:700;cursor:pointer;transform:translate(-50%,-50%);white-space:nowrap;transition:opacity .3s}
 .offscreen-arrow.show{display:flex}
@@ -304,8 +316,12 @@ button{font:inherit}
   .wo-copy{font-size:.75rem}
   .wo-txt strong{font-size:.8rem}
   .confirm-text{font-size:.72rem}
-  .summary-route .pt{font-size:.62rem}
-  .summary-route{padding:14px 14px 12px}
+  .summary-route{flex-direction:column;align-items:flex-start;gap:9px;padding:16px 16px 14px}
+  .summary-route .ln{display:none}
+  .summary-route .pt{font-size:.72rem;width:100%;text-align:left;position:relative;padding-left:16px}
+  .summary-route .pt::before{content:'●';position:absolute;left:0;top:2px;color:#c7ccd6;font-size:.55rem}
+  .summary-route .pt.mid::before{color:#b22234}
+  .summary-route .pt.end::before{content:'🏁';font-size:.7rem;top:0}
   .summary-details{padding:12px 14px 14px;gap:10px 12px}
   .summary-details div strong{font-size:.78rem}
 
@@ -329,7 +345,7 @@ button{font:inherit}
   /* chrome: chips, popovers, banners */
   .chip{padding:8px 11px;font-size:.7rem}
   .about-popover{width:min(260px, 82vw)}
-  .orient-banner p{font-size:.7rem}
+  .orient-banner .ob-pill{font-size:.7rem}
   .oa-label{font-size:.66rem}
 }
 @media (max-width:360px){
@@ -377,11 +393,11 @@ button{font:inherit}
 </div>
 
 <div class="topbar" id="topbar">
-<a class="chip" href="https://albtaa.com">← Albtaa.com</a>
-<div style="display:flex;gap:10px;position:relative">
-  <button class="chip chip-cta" id="talkToUsChip" type="button">💬 Talk to us</button>
-  <button class="chip" id="aboutChip" type="button">ⓘ What is this?</button>
-  <button class="chip" id="resetView" type="button">🧭 Reset map</button>
+<a class="chip" href="https://albtaa.com"><span class="chip-ico">←</span><span class="chip-label"> Albtaa.com</span></a>
+<div class="topbar-actions" style="display:flex;gap:10px;position:relative">
+  <button class="chip chip-cta" id="talkToUsChip" type="button"><span class="chip-ico">💬</span><span class="chip-label"> Talk to us</span></button>
+  <button class="chip" id="aboutChip" type="button"><span class="chip-ico">ⓘ</span><span class="chip-label"> What is this?</span></button>
+  <button class="chip" id="resetView" type="button"><span class="chip-ico">🧭</span><span class="chip-label"> Reset map</span></button>
   <div class="about-popover" id="aboutPopover">
     <div class="ap-eyebrow">Albania Business Navigator</div>
     <p>Every marker on this map is a real business path. Pick one, and Albtaa's team drives your registration to a real company in 3–5 days — from anywhere in the world.</p>
@@ -395,8 +411,8 @@ button{font:inherit}
 </div>
 
 <div class="orient-banner" id="orientBanner">
-  <p>🧭 Each marker below is a <b>real business path</b> — tap one to explore registering your company in Albania.</p>
-  <button class="ob-close" id="orientClose" aria-label="Dismiss" type="button">×</button>
+  <div class="ob-pill">🧭 Choose your business path<button class="ob-close" id="orientClose" aria-label="Dismiss" type="button">×</button></div>
+  <div class="ob-arrow">↓</div>
 </div>
 
 <div class="route-hint" id="routeHint">
@@ -499,8 +515,8 @@ var RINAS = {lng:19.7206, lat:41.4147, name:'Rinas — Tirana International Airp
 var TIRANA_VIEW = {center:[HQ.lng, HQ.lat], zoom:14, pitch:55, bearing:-17};
 
 var CITIES = [
-  {id:'tech', name:'Tech Startup City', short:'Tech Startup', place:'Blloku, Tirana',
-   lng:19.8115, lat:41.3223,
+  {id:'tech', name:'Tech Startup City', short:'Tech Startup', place:'The Pyramid of Tirana',
+   lng:19.82139, lat:41.32306,
    title:'Tech Startup in Albania', href:'software-company-albania.html',
    desc:'Register an SHPK for SaaS, custom development or IT services — remote setup, 0% CIT eligibility, and a developer talent pool built for EU-facing product teams.',
    checks:['100% foreign ownership','Remote process, no travel required','Company registration & tax ID','Ongoing accounting support'],
