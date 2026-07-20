@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCMGLLZQB1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VCMGLLZQB1');
+</script>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Register a Company in Albania in 3–5 Days | Albania Business Navigator — ALBTAA</title>
+<title>Register a Company in Albania in 3–5 Days | ALBTAA</title>
 <meta name="description" content="Open a company in Albania as a foreigner — 100% foreign ownership, 0% CIT eligible, fully remote SHPK registration in 3–5 business days from €250. Explore Tech Startup, Investment, Holding, Import Export, Consulting and Engineering company formation with ALBTAA."/>
 <meta name="keywords" content="register a company in Albania, open a business in Albania, company formation Albania, SHPK registration, foreign company Albania, Albania company registration for foreigners, 0% tax company Albania, start a business in Albania remotely"/>
 <meta name="robots" content="index, follow"/>
@@ -276,6 +284,60 @@ button{font:inherit}
 .wo-txt{display:flex;flex-direction:column}
 .wo-txt strong{color:#fff;font-size:.86rem;font-weight:800}
 .wo-txt small{color:rgba(255,255,255,.85);font-size:.7rem;margin-top:2px}
+
+/* ============ mobile typography & spacing pass — fits real small phones (iPhone SE, 375–414px) ============ */
+@media (max-width:480px){
+  .gate h1{font-size:clamp(1.4rem,7vw,2rem);max-width:100%}
+  .gate p{font-size:.88rem}
+  .gate-btn{padding:14px 24px;font-size:.85rem}
+  .cine-caption .eyebrow{font-size:.64rem}
+  .cine-caption .line{font-size:clamp(1.15rem,6.5vw,1.7rem)}
+  .cine-caption{bottom:12%;padding:0 18px}
+  .welcome-title{font-size:clamp(1.15rem,6.5vw,1.6rem)}
+  .welcome-sub{font-size:.82rem}
+  .route-hint .to{font-size:.98rem}
+  .route-hint{padding:0 18px 26px}
+  .hq-arrival .title{font-size:clamp(1.2rem,6.5vw,1.6rem)}
+  .hq-arrival .sub{font-size:.82rem}
+  .hq-arrival-in{max-width:100%;padding:0 6px}
+  .about-albtaa p{font-size:.74rem}
+  .wo-copy{font-size:.75rem}
+  .wo-txt strong{font-size:.8rem}
+  .confirm-text{font-size:.72rem}
+  .summary-route .pt{font-size:.62rem}
+  .summary-route{padding:14px 14px 12px}
+  .summary-details{padding:12px 14px 14px;gap:10px 12px}
+  .summary-details div strong{font-size:.78rem}
+
+  /* quick info panel + Business Brief + journey form */
+  .panel-title,.brief-title{font-size:1.15rem}
+  .panel-desc,.brief-desc{font-size:.8rem}
+  .panel-hero,.brief-hero{padding:20px 18px 4px}
+  .panel-btns,.brief-cta{padding-left:18px;padding-right:18px}
+  .panel-checks li,.brief-benefits li,.brief-included li{font-size:.78rem}
+  .panel-meta-box strong{font-size:.92rem}
+  .brief-section{padding:15px 18px}
+  .brief-section h4{font-size:.84rem}
+  .brief-step .bs-d{font-size:.78rem}
+  .brief-faq summary{font-size:.8rem}
+  .journey{padding:22px 18px 20px}
+  .journey-q{font-size:1.02rem}
+  .journey input{padding:12px 4px;font-size:.92rem}
+  .journey-privacy{font-size:.64rem}
+  .modal-title,.compare-head h3{font-size:1.15rem}
+
+  /* chrome: chips, popovers, banners */
+  .chip{padding:8px 11px;font-size:.7rem}
+  .about-popover{width:min(260px, 82vw)}
+  .orient-banner p{font-size:.7rem}
+  .oa-label{font-size:.66rem}
+}
+@media (max-width:360px){
+  .gate h1{font-size:1.35rem}
+  .welcome-title{font-size:1.1rem}
+  .hq-arrival .title{font-size:1.1rem}
+  .panel-title,.brief-title{font-size:1.05rem}
+}
 </style>
 </head>
 <body>
@@ -315,7 +377,7 @@ button{font:inherit}
 </div>
 
 <div class="topbar" id="topbar">
-<a class="chip" href="#">← Albtaa.com</a>
+<a class="chip" href="https://albtaa.com">← Albtaa.com</a>
 <div style="display:flex;gap:10px;position:relative">
   <button class="chip chip-cta" id="talkToUsChip" type="button">💬 Talk to us</button>
   <button class="chip" id="aboutChip" type="button">ⓘ What is this?</button>
@@ -428,10 +490,8 @@ if(!HAS_WEBGL){
 
 /* ---------- Real Albanian coordinates ---------- */
 var HQ = {lng:19.8130, lat:41.3202, name:'ALBTAA HQ', place:'Rruga Andon Zako Çajupi, Blloku, Tirana'};
-/* ⚠️ concept placeholder — replace with Albtaa's real WhatsApp Business number before launch */
-var ALBTAA_WHATSAPP = '355691234567';
-/* ⚠️ concept placeholder — replace with the real, published privacy policy URL before launch */
-var PRIVACY_POLICY_URL = 'https://albtaa.com/privacy-policy';
+var ALBTAA_WHATSAPP = '355693601802';
+var PRIVACY_POLICY_URL = 'https://albtaa.com/privacy-policy.html';
 var RINAS = {lng:19.7206, lat:41.4147, name:'Rinas — Tirana International Airport'};
 /* resting/establishing view — same close, dramatic Tirana view on every device.
    Markers that fall outside the viewport (especially on narrow phones) get a
@@ -964,6 +1024,7 @@ map.on('move', function(){
 });
 
 document.getElementById('talkToUsChip').addEventListener('click', function(){
+  if(typeof gtag==='function') gtag('event','contact_whatsapp_direct',{event_category:'engagement'});
   var msg = "Hi Albtaa, I'd like to learn more about registering a company in Albania.";
   window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
 });
@@ -1007,6 +1068,7 @@ function flyToCity(c){
   if(flying) return;
   activeCity = c;
   dismissOrientBanner();
+  if(typeof gtag==='function') gtag('event','select_business_path',{event_category:'engagement',path:c.short});
 
   fetchRoadRoute([RINAS.lng, RINAS.lat], [c.lng, c.lat]).then(function(routePts){
     flyAlongRoute(routePts, {
@@ -1062,6 +1124,7 @@ function closePanel(){
 
 /* ---------- Business Brief — full detail panel, map stays visible & blurred behind it ---------- */
 function openBrief(c){
+  if(typeof gtag==='function') gtag('event','view_business_brief',{event_category:'engagement',path:c.short});
   var panel = document.getElementById('briefPanel');
   panel.innerHTML =
     '<button class="brief-close" id="briefClose" aria-label="Close">×</button>'+
@@ -1214,6 +1277,7 @@ function t(){ return I18N[currentLang] || I18N.en; }
 var journeyData = {country:'', name:'', email:'', phone:'', company:''};
 var journeyStep = 0;
 function startJourney(c){
+  if(typeof gtag==='function') gtag('event','begin_journey',{event_category:'conversion',path:c.short});
   journeyStep = 0;
   currentLang = 'en';
   journeyData = {country:'', name:'', email:'', phone:'', company:''};
@@ -1365,10 +1429,12 @@ function arriveAtHQ(c){
       /* The moment the journey ends, the lead is captured automatically — the
          WhatsApp option below is purely optional, for visitors who'd rather talk now. */
       submitLeadData(Object.assign({path: c.short, status:'complete'}, journeyData));
+      if(typeof gtag==='function') gtag('event','complete_journey',{event_category:'conversion',path:c.short,country:journeyData.country});
     });
   });
 
   document.getElementById('hqWhatsappBtn').onclick = function(){
+    if(typeof gtag==='function') gtag('event','contact_whatsapp_after_journey',{event_category:'conversion',path:c.short});
     var msg = 'Hi Albtaa, I just came from the Business Navigator.\n'+
       'Name: '+journeyData.name+'\nCompany: '+journeyData.company+'\nPath: '+c.short+'\nCountry: '+journeyData.country;
     window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
