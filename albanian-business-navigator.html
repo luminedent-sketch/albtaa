@@ -76,20 +76,38 @@ button{font:inherit}
 /* Topbar */
 .topbar{position:absolute;top:max(34px, env(safe-area-inset-top));left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:16px max(18px, env(safe-area-inset-right)) 16px max(18px, env(safe-area-inset-left));pointer-events:none;opacity:0;transition:opacity .4s}
 .topbar.show{opacity:1}
-.chip{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(14,27,46,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);color:#fff;padding:9px 14px;border-radius:100px;font-size:.78rem;font-weight:700;cursor:pointer}
-.chip-cta{background:linear-gradient(135deg,#1fa855,#178a46);border-color:transparent}
-.chip-cta:hover{background:linear-gradient(135deg,#24bb5f,#1a9d51)}
-.chip:hover{background:rgba(14,27,46,.9)}
+.chip{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(14,27,46,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);color:#fff;padding:9px 14px;border-radius:100px;font-size:.78rem;font-weight:700;cursor:pointer;transition:transform .15s ease,background .2s}
+.chip:hover{background:rgba(14,27,46,.9);transform:translateY(-1px)}
+.chip-ico{display:inline-block;font-size:1.05rem;line-height:1}
+
+/* utility icons (What is this / Reset map) — small, playful idle animations that invite a tap */
+@keyframes iconThink{0%,70%,100%{transform:rotate(0deg)}78%{transform:rotate(-9deg)}86%{transform:rotate(7deg)}94%{transform:rotate(-4deg)}}
+#aboutChip .chip-ico{animation:iconThink 5s ease-in-out infinite}
+#aboutChip:hover .chip-ico{animation-duration:1.1s}
+@keyframes iconSpin{to{transform:rotate(360deg)}}
+#resetView .chip-ico{display:inline-block;animation:iconSpin 9s linear infinite}
+#resetView:hover .chip-ico{animation-duration:.7s}
+#resetView.spin-burst .chip-ico{animation:iconSpin .6s linear}
+
+/* Talk to us — its own clearly-labeled floating action button, always visible, same on every device */
+.talk-fab{position:fixed;right:max(18px, env(safe-area-inset-right));bottom:max(20px, env(safe-area-inset-bottom));z-index:26;display:flex;align-items:center;gap:9px;background:linear-gradient(135deg,#1fa855,#178a46);color:#fff;padding:13px 20px 13px 15px;border-radius:100px;border:none;cursor:pointer;font-size:.85rem;font-weight:800;box-shadow:0 10px 26px rgba(23,138,70,.45);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s,box-shadow .2s}
+.talk-fab.show{opacity:1;transform:translateY(0)}
+.talk-fab:hover{box-shadow:0 14px 32px rgba(23,138,70,.55)}
+.talk-fab .wave-ico{font-size:1.25rem;display:inline-block;transform-origin:70% 70%;animation:waveHand 2.6s ease-in-out infinite}
+@keyframes waveHand{
+  0%,45%,100%{transform:rotate(0deg)}
+  50%{transform:rotate(16deg)} 55%{transform:rotate(-8deg)} 60%{transform:rotate(14deg)}
+  65%{transform:rotate(-6deg)} 70%{transform:rotate(10deg)} 75%{transform:rotate(0deg)}
+}
 
 @media (max-width:600px){
   .topbar{align-items:flex-start;padding-top:max(14px, env(safe-area-inset-top))}
   .topbar > a.chip{padding:9px 10px}
   .topbar > a.chip .chip-label{display:none}
-  .topbar-actions{position:fixed !important;top:auto !important;bottom:96px;right:max(12px, env(safe-area-inset-right));flex-direction:column !important;gap:10px !important;z-index:25}
-  .topbar-actions .chip{width:46px;height:46px;padding:0;justify-content:center;border-radius:50%}
+  .topbar-actions .chip{width:44px;height:44px;padding:0;justify-content:center;border-radius:50%}
   .topbar-actions .chip .chip-label{display:none}
-  .topbar-actions .chip-ico{font-size:1.05rem}
-  .about-popover{right:56px;top:auto;bottom:0}
+  .about-popover{right:0}
+  .talk-fab{padding:12px 18px 12px 13px;font-size:.8rem}
 }
 
 .about-popover{position:absolute;top:calc(100% + 10px);right:0;width:280px;background:rgba(14,27,46,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:18px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 20px 50px rgba(0,0,0,.4)}
@@ -395,7 +413,6 @@ button{font:inherit}
 <div class="topbar" id="topbar">
 <a class="chip" href="https://albtaa.com"><span class="chip-ico">←</span><span class="chip-label"> Albtaa.com</span></a>
 <div class="topbar-actions" style="display:flex;gap:10px;position:relative">
-  <button class="chip chip-cta" id="talkToUsChip" type="button"><span class="chip-ico">💬</span><span class="chip-label"> Talk to us</span></button>
   <button class="chip" id="aboutChip" type="button"><span class="chip-ico">ⓘ</span><span class="chip-label"> What is this?</span></button>
   <button class="chip" id="resetView" type="button"><span class="chip-ico">🧭</span><span class="chip-label"> Reset map</span></button>
   <div class="about-popover" id="aboutPopover">
@@ -409,6 +426,10 @@ button{font:inherit}
   </div>
 </div>
 </div>
+
+<button class="talk-fab" id="talkToUsChip" type="button">
+  <span class="wave-ico">👋</span><span>Talk to us</span>
+</button>
 
 <div class="orient-banner" id="orientBanner">
   <div class="ob-pill">🧭 Choose your business path<button class="ob-close" id="orientClose" aria-label="Dismiss" type="button">×</button></div>
@@ -675,6 +696,7 @@ function endCineIntro(){
   introEnded = true;
   document.getElementById('cineIntro').classList.add('fade');
   document.getElementById('topbar').classList.add('show');
+  document.getElementById('talkToUsChip').classList.add('show');
   document.querySelectorAll('.mk-pre-intro').forEach(function(el){ el.classList.add('reveal'); });
   document.getElementById('orientBanner').classList.add('show');
   if(typeof updateAllArrows === 'function') updateAllArrows();
@@ -1076,7 +1098,13 @@ function resetToStart(){
   currentPos = [RINAS.lng, RINAS.lat];
   closePanel();
 }
-document.getElementById('resetView').addEventListener('click', resetToStart);
+document.getElementById('resetView').addEventListener('click', function(){
+  var btn = this;
+  btn.classList.remove('spin-burst');
+  void btn.offsetWidth; /* restart the CSS animation even on rapid re-clicks */
+  btn.classList.add('spin-burst');
+  resetToStart();
+});
 
 /* ---------- fly to a real place on the real map, driving in from Rinas airport ---------- */
 var activeCity = null;
