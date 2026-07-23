@@ -12,7 +12,7 @@
 </script>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Register a Company in Albania in 3–5 Days | ALBTAA</title>
-<meta name="description" content="Open a company in Albania as a foreigner — 100% foreign ownership, 0% CIT eligible, fully remote SHPK registration in 3–5 business days from €250. Explore Tech Startup, Investment, Holding, Import Export, Consulting and Engineering company formation with ALBTAA."/>
+<meta name="description" content="Open a company in Albania as a foreigner — 100% foreign ownership, 0% CIT eligible, fully remote SHPK registration in 3–5 business days from €250."/>
 <meta name="keywords" content="register a company in Albania, open a business in Albania, company formation Albania, SHPK registration, foreign company Albania, Albania company registration for foreigners, 0% tax company Albania, start a business in Albania remotely"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://albtaa.com/albanian-business-navigator"/>
@@ -90,9 +90,9 @@ button{font:inherit}
 #resetView.spin-burst .chip-ico{animation:iconSpin .6s linear}
 
 /* Talk to us — its own clearly-labeled floating action button, always visible, same on every device */
-.talk-fab{position:fixed;right:max(18px, env(safe-area-inset-right));bottom:max(20px, env(safe-area-inset-bottom));z-index:26;display:flex;align-items:center;gap:9px;background:linear-gradient(135deg,#1fa855,#178a46);color:#fff;padding:13px 20px 13px 15px;border-radius:100px;border:none;cursor:pointer;font-size:.85rem;font-weight:800;box-shadow:0 10px 26px rgba(23,138,70,.45);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s,box-shadow .2s}
-.talk-fab.show{opacity:1;transform:translateY(0)}
-.talk-fab:hover{box-shadow:0 14px 32px rgba(23,138,70,.55)}
+.talk-fab{position:fixed;left:50%;bottom:max(24px, env(safe-area-inset-bottom));transform:translate(-50%,10px);z-index:26;display:flex;align-items:center;gap:9px;background:linear-gradient(135deg,#1fa855,#178a46);color:#fff;padding:13px 22px 13px 16px;border-radius:100px;border:none;cursor:pointer;font-size:.85rem;font-weight:800;box-shadow:0 10px 26px rgba(23,138,70,.45);opacity:0;transition:opacity .4s,transform .4s,box-shadow .2s}
+.talk-fab.show{opacity:1;transform:translate(-50%,0)}
+.talk-fab:hover{box-shadow:0 14px 34px rgba(23,138,70,.55);transform:translate(-50%,-2px)}
 .talk-fab .wave-ico{font-size:1.25rem;display:inline-block;transform-origin:70% 70%;animation:waveHand 2.6s ease-in-out infinite}
 @keyframes waveHand{
   0%,45%,100%{transform:rotate(0deg)}
@@ -229,6 +229,12 @@ button{font:inherit}
 
 /* Cinematic opening — plays once before the existing gate screen, does not alter anything after it */
 #cineIntro{position:absolute;inset:0;z-index:60;opacity:1;transition:opacity 1s ease;pointer-events:none}
+
+.map-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0b1524;opacity:1;transition:opacity .5s ease;z-index:2}
+.map-loader.hide{opacity:0;pointer-events:none}
+.ml-spinner{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,184,194,.25);border-top-color:#ffb8c2;animation:mlSpin .9s linear infinite}
+@keyframes mlSpin{to{transform:rotate(360deg)}}
+.ml-text{color:rgba(255,255,255,.55);font-size:.78rem;font-weight:600;letter-spacing:.02em}
 #cineIntro.fade{opacity:0}
 .cine-veil{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 0%,rgba(11,21,36,.35) 55%,rgba(11,21,36,.8) 100%)}
 .cine-caption{position:absolute;left:0;right:0;bottom:16%;text-align:center;padding:0 24px}
@@ -265,9 +271,9 @@ button{font:inherit}
 .route-hint .to{color:#fff;font-family:var(--fh);font-weight:800;font-size:1.15rem;letter-spacing:.01em}
 
 /* HQ arrival — same restrained caption language as the opening cinematic, no physical gate graphic */
-.hq-arrival{position:absolute;inset:0;z-index:38;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(ellipse at 50% 50%,rgba(11,21,36,.35),rgba(11,21,36,.82));opacity:0;pointer-events:none;transition:opacity .6s}
+.hq-arrival{position:absolute;inset:0;z-index:38;display:block;text-align:center;padding:56px 20px 40px;background:radial-gradient(ellipse at 50% 50%,rgba(11,21,36,.35),rgba(11,21,36,.82));opacity:0;pointer-events:none;transition:opacity .6s;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .hq-arrival.show{opacity:1;pointer-events:auto}
-.hq-arrival-in{max-width:420px}
+.hq-arrival-in{max-width:420px;margin:0 auto}
 .hq-arrival .eyebrow{color:#ffb8c2;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;opacity:0;transition:opacity 1s ease}
 .hq-arrival .title{font-family:var(--fh);font-style:italic;font-weight:500;color:#fff;font-size:clamp(1.5rem,4vw,2.1rem);margin-bottom:14px;opacity:0;transform:translateY(8px);transition:opacity 1s ease,transform 1s ease}
 .hq-arrival .sub{color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.7;margin-bottom:22px;opacity:0;transition:opacity 1s ease}
@@ -317,6 +323,9 @@ button{font:inherit}
 
 /* ============ mobile typography & spacing pass — fits real small phones (iPhone SE, 375–414px) ============ */
 @media (max-width:480px){
+  .hq-arrival{padding:48px 14px 30px}
+  .confirm-block{border-radius:16px;padding:12px 14px;align-items:flex-start;text-align:left}
+  .confirm-tick{margin-top:1px}
   .gate h1{font-size:clamp(1.4rem,7vw,2rem);max-width:100%}
   .gate p{font-size:.88rem}
   .gate-btn{padding:14px 24px;font-size:.85rem}
@@ -371,6 +380,7 @@ button{font:inherit}
   .welcome-title{font-size:1.1rem}
   .hq-arrival .title{font-size:1.1rem}
   .panel-title,.brief-title{font-size:1.05rem}
+  .summary-details{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -403,6 +413,7 @@ button{font:inherit}
 
 <div id="cineIntro">
 <div class="cine-veil"></div>
+<div class="map-loader" id="mapLoader"><div class="ml-spinner"></div><div class="ml-text">Loading the real map of Albania…</div></div>
 <div class="cine-caption" id="cineCaption">
   <div class="eyebrow" id="cineEyebrow">Somewhere in Europe</div>
   <div class="line" id="cineLine">We're opening the gate for you.</div>
@@ -512,6 +523,13 @@ if(typeof maplibregl === 'undefined'){
 /* ---------- device-aware performance profile (must run before any camera/view setup below) ---------- */
 var IS_MOBILE = window.matchMedia('(max-width: 760px)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 var IS_LOW_POWER = IS_MOBILE || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+/* also downgrade on slow/metered connections — no point loading terrain+3D buildings over 2G/save-data */
+(function(){
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if(conn && (conn.saveData || /^(slow-2g|2g|3g)$/.test(conn.effectiveType || ''))){
+    IS_LOW_POWER = true;
+  }
+})();
 var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var HAS_WEBGL = (function(){
   try{
@@ -523,6 +541,8 @@ if(!HAS_WEBGL){
   document.getElementById('map').innerHTML =
     '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ffb8c2;background:#0b1524;font-family:sans-serif;text-align:center;padding:24px;">'+
     'This device/browser doesn\'t support the 3D map (WebGL). Please try a modern browser like Chrome, Safari or Edge.</div>';
+  var ci = document.getElementById('cineIntro');
+  if(ci) ci.style.display = 'none';
 }
 
 /* ---------- Real Albanian coordinates ---------- */
@@ -684,7 +704,7 @@ var map = new maplibregl.Map({
   bearing: 0,
   maxPitch: 85,
   antialias: !IS_LOW_POWER,                              /* antialiasing is GPU-expensive — skip on phones/low-power laptops */
-  pixelRatio: Math.min(window.devicePixelRatio || 1, IS_LOW_POWER ? 1.3 : 2), /* caps WebGL canvas resolution on retina/4K screens */
+  pixelRatio: Math.min(window.devicePixelRatio || 1, IS_LOW_POWER ? 1 : 1.5), /* caps WebGL canvas resolution on retina/4K screens */
   refreshExpiredTiles: false
 });
 map.addControl(new maplibregl.NavigationControl({visualizePitch:true}), 'bottom-right');
@@ -700,6 +720,10 @@ function endCineIntro(){
   document.querySelectorAll('.mk-pre-intro').forEach(function(el){ el.classList.add('reveal'); });
   document.getElementById('orientBanner').classList.add('show');
   if(typeof updateAllArrows === 'function') updateAllArrows();
+  if(typeof addHeavyMapLayers === 'function'){
+    if(map.isStyleLoaded && map.isStyleLoaded()){ addHeavyMapLayers(); }
+    else { map.once('load', addHeavyMapLayers); }
+  }
 }
 function dismissOrientBanner(){
   document.getElementById('orientBanner').classList.remove('show');
@@ -712,6 +736,7 @@ document.getElementById('cineSkip').addEventListener('click', function(){
 });
 
 function playCineIntro(){
+  document.getElementById('mapLoader').classList.add('hide');
   if(REDUCED_MOTION){
     map.jumpTo(TIRANA_VIEW);
     endCineIntro();
@@ -744,6 +769,29 @@ function playCineIntro(){
 map.once('load', playCineIntro);
 
 map.on('load', function(){
+  /* route line source — lightweight, needed early. Everything GPU-heavy below is deferred. */
+  map.addSource('route', {type:'geojson', data:{type:'Feature', geometry:{type:'LineString', coordinates:[]}}});
+  map.addLayer({
+    id:'route-glow', type:'line', source:'route',
+    layout:{'line-cap':'round','line-join':'round'},
+    paint:{'line-color':'#b22234','line-width':10,'line-opacity':0.12,'line-blur':5}
+  });
+  map.addLayer({
+    id:'route-line', type:'line', source:'route',
+    layout:{'line-cap':'round','line-join':'round'},
+    paint:{'line-color':'#ffd7dc','line-width':2,'line-opacity':0.55}
+  });
+});
+
+/* ---------- heavy GPU layers — deferred until the camera actually settles on Tirana ----------
+   Loading terrain/hillshade/3D buildings while the intro is still zoomed out over all of Europe
+   would trigger a huge, pointless burst of tile requests. Adding them only once we're here keeps
+   the initial page feel responsive instead of "stuck" on slower connections/devices. */
+var heavyLayersAdded = false;
+function addHeavyMapLayers(){
+  if(heavyLayersAdded) return;
+  heavyLayersAdded = true;
+
   /* real terrain elevation — MapTiler high-quality elevation data.
      Skipped on low-power devices: terrain + hillshade is one of the heaviest GPU costs here. */
   if(!IS_LOW_POWER){
@@ -806,20 +854,7 @@ map.on('load', function(){
       });
     }
   }catch(e){ console.warn('3D buildings layer could not be added:', e); }
-
-  /* route line source — a soft, solid light trail along the actual travelled path (no dashed "quest path" look) */
-  map.addSource('route', {type:'geojson', data:{type:'Feature', geometry:{type:'LineString', coordinates:[]}}});
-  map.addLayer({
-    id:'route-glow', type:'line', source:'route',
-    layout:{'line-cap':'round','line-join':'round'},
-    paint:{'line-color':'#b22234','line-width':10,'line-opacity':0.12,'line-blur':5}
-  });
-  map.addLayer({
-    id:'route-line', type:'line', source:'route',
-    layout:{'line-cap':'round','line-join':'round'},
-    paint:{'line-color':'#ffd7dc','line-width':2,'line-opacity':0.55}
-  });
-});
+}
 
 /* ---------- geo helpers ---------- */
 function deg2rad(d){ return d*Math.PI/180; }
@@ -1064,7 +1099,7 @@ map.on('move', function(){
 document.getElementById('talkToUsChip').addEventListener('click', function(){
   if(typeof gtag==='function') gtag('event','contact_whatsapp_direct',{event_category:'engagement'});
   var msg = "Hi Albtaa, I'd like to learn more about registering a company in Albania.";
-  window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
+  window.location.href = 'https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg);
 });
 
 document.getElementById('aboutChip').addEventListener('click', function(e){
@@ -1481,7 +1516,7 @@ function arriveAtHQ(c){
     if(typeof gtag==='function') gtag('event','contact_whatsapp_after_journey',{event_category:'conversion',path:c.short});
     var msg = 'Hi Albtaa, I just came from the Business Navigator.\n'+
       'Name: '+journeyData.name+'\nCompany: '+journeyData.company+'\nPath: '+c.short+'\nCountry: '+journeyData.country;
-    window.open('https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg), '_blank');
+    window.location.href = 'https://wa.me/'+ALBTAA_WHATSAPP+'?text='+encodeURIComponent(msg);
   };
 }
 
@@ -1491,7 +1526,7 @@ function arriveAtHQ(c){
       (Extensions → Apps Script → deploy as Web App, "Anyone" access), then POST here.
    2) Email: use that same Apps Script (MailApp.sendEmail) or a service like EmailJS/Formspree. */
 function submitLeadData(data, onDone){
-  var GOOGLE_SHEET_WEBHOOK_URL = ''; // e.g. 'https://script.google.com/macros/s/XXXXX/exec'
+  var GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzeWD_D6W8wXGqD0mOqdB4SEVAz_MKihgh4h8fKShBJEqGZqpcTz-iGkcMNTo0y9uLzlw/exec'; // e.g. 'https://script.google.com/macros/s/XXXXX/exec'
   var payload = {
     timestamp: new Date().toISOString(),
     status: data.status || 'complete',
