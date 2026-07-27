@@ -755,6 +755,7 @@ function bindLeadForm(form){
     btn.textContent='Sending…';
     btn.disabled=true;
     var fd=new FormData(form);var payload={};fd.forEach(function(v,k){payload[k]=v;});
+  if(payload.name&&!payload.firstName){var __np=payload.name.trim().split(/\s+/);payload.firstName=__np.shift()||'';payload.lastName=__np.join(' ')||payload.firstName;}
   payload.referrer=document.referrer||'';
   payload.pageUrl=window.location.href;
   payload.userAgent=navigator.userAgent;
