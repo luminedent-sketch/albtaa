@@ -440,6 +440,10 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <input id="co" name="country" placeholder="Italy, UK, USA…" required="" type="text"/>
 </div>
 <div class="hform-group">
+<label for="ph">WhatsApp / Phone *</label>
+<input autocomplete="tel" id="ph" name="phone" placeholder="+39 …" required="" type="tel"/>
+</div>
+<div class="hform-group">
 <label for="srv">What do you need?</label>
 <select id="srv" name="service">
 <option value="tax-representative-setup">Tax Representative Setup</option>
@@ -908,7 +912,7 @@ if(form){
       })
       .catch(function(){
         btn.textContent=od;btn.disabled=false;
-        alert('Send error. Please try again or contact us on WhatsApp');
+        alert('Send error. Please try again or contact us on WhatsApp.');
       });
   });
 }
