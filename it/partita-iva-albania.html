@@ -630,14 +630,14 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 </div>
 <div class="hform-row">
 <div class="hform-group">
-<label for="fcountry">Paese *</label>
-
-<input id="fcountry" name="country" placeholder="Italia, Svizzera, USA…" required="" type="text"/>
-</div>
-<div class="hform-group">
 <label for="femail">Email *</label>
 
 <input autocomplete="email" id="femail" name="email" placeholder="mario@azienda.it" required="" type="email"/>
+</div>
+<div class="hform-group">
+<label for="fcountry">Paese *</label>
+
+<input id="fcountry" name="country" placeholder="Italia, Svizzera, USA…" required="" type="text"/>
 </div>
 </div>
 <div class="hform-group">
@@ -782,7 +782,7 @@ function bindLeadForm(form){
       })
       .catch(function(){
         btn.textContent=od;btn.disabled=false;
-        alert('Errore di invio. Riprova o contattaci su WhatsApp');
+        alert('Errore di invio. Riprova o contattaci su WhatsApp.');
       });
   });
 }
