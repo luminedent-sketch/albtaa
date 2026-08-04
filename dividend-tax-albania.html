@@ -582,14 +582,14 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 </div>
 <div class="hform-row">
 <div class="hform-group">
-<label for="fcountry">Country *</label>
-
-<input id="fcountry" name="country" placeholder="UK, USA, Germany…" required="" type="text"/>
-</div>
-<div class="hform-group">
 <label for="femail">Email *</label>
 
 <input autocomplete="email" id="femail" name="email" placeholder="john@company.com" required="" type="email"/>
+</div>
+<div class="hform-group">
+<label for="fcountry">Country *</label>
+
+<input id="fcountry" name="country" placeholder="UK, USA, Germany…" required="" type="text"/>
 </div>
 </div>
 <div class="hform-group">
@@ -726,7 +726,7 @@ function bindLeadForm(form){
       })
       .catch(function(){
         btn.textContent=od;btn.disabled=false;
-        alert('Submission error. Please try again or contact us on WhatsApp');
+        alert('Send error. Please try again or contact us on WhatsApp.');
       });
   });
 }
