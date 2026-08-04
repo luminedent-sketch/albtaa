@@ -321,11 +321,12 @@ footer{background:var(--navy);padding:52px 0 26px;color:rgba(255,255,255,.55)}
 <input class="js-useragent" name="userAgent" type="hidden" value=""/>
 <input id="form-lang" name="lang" type="hidden" value="en"/>
 <div class="fg-row">
-<div class="fgroup"><label>First Name *</label><input name="firstName" placeholder="John" required="" type="text"/></div>
-<div class="fgroup"><label>Last Name *</label><input name="lastName" placeholder="Smith" required="" type="text"/></div>
+<div class="fgroup"><label>First Name *</label><input autocomplete="given-name" name="firstName" placeholder="John" required="" type="text"/></div>
+<div class="fgroup"><label>Last Name *</label><input autocomplete="family-name" name="lastName" placeholder="Smith" required="" type="text"/></div>
 </div>
-<div class="fgroup"><label>Email *</label><input name="email" placeholder="you@company.com" required="" type="email"/></div>
-<div class="fgroup"><label>Your Country *</label><input name="country" placeholder="Italy, UK, USA, Germany…" required="" type="text"/></div>
+<div class="fgroup"><label>Email *</label><input autocomplete="email" name="email" placeholder="you@company.com" required="" type="email"/></div>
+<div class="fgroup"><label>Your Country *</label><input autocomplete="country-name" name="country" placeholder="Italy, UK, USA, Germany…" required="" type="text"/></div>
+<div class="fgroup"><label>WhatsApp / Phone *</label><input autocomplete="tel" name="phone" placeholder="+39 …" required="" type="tel"/></div>
 <div class="fgroup">
 <label>I need to…</label>
 <select name="service">
