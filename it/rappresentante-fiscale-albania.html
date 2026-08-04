@@ -440,6 +440,10 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 <input id="co" name="country" placeholder="Italia, UK, USA…" required="" type="text"/>
 </div>
 <div class="hform-group">
+<label for="ph">WhatsApp / Telefono *</label>
+<input autocomplete="tel" id="ph" name="phone" placeholder="+39 …" required="" type="tel"/>
+</div>
+<div class="hform-group">
 <label for="srv">Di cosa hai bisogno?</label>
 <select id="srv" name="service">
 <option value="tax-representative-setup">Attivazione Rappresentante Fiscale</option>
@@ -893,7 +897,7 @@ if(form){
     e.preventDefault();
     var btn=form.querySelector('button[type="submit"]');
     var od=btn.textContent;
-    btn.textContent='Invio in corso…';
+    btn.textContent='Invio…';
     btn.disabled=true;
     var fd=new FormData(form);var payload={};fd.forEach(function(v,k){payload[k]=v;});
   payload.referrer=document.referrer||'';
@@ -908,7 +912,7 @@ if(form){
       })
       .catch(function(){
         btn.textContent=od;btn.disabled=false;
-        alert('Errore di invio. Riprova o contattaci su WhatsApp');
+        alert('Errore di invio. Riprova o contattaci su WhatsApp.');
       });
   });
 }
