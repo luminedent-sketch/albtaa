@@ -226,12 +226,12 @@ footer{background:var(--navy);padding:52px 0 26px;color:rgba(255,255,255,.55)}
 <input id="form-lang" name="lang" type="hidden" value="it"/>
 <div class="fg">
 <div class="fg-row">
-<div class="fgroup"><label>Nome *</label><input name="firstName" placeholder="John" required="" type="text"/></div>
-<div class="fgroup"><label>Cognome *</label><input name="lastName" placeholder="Smith" required="" type="text"/></div>
+<div class="fgroup"><label>Nome *</label><input autocomplete="given-name" name="firstName" placeholder="Mario" required="" type="text"/></div>
+<div class="fgroup"><label>Cognome *</label><input autocomplete="family-name" name="lastName" placeholder="Rossi" required="" type="text"/></div>
 </div>
-<div class="fgroup"><label>Email *</label><input name="email" placeholder="you@company.com" required="" type="email"/></div>
-<div class="fgroup"><label>WhatsApp / Telefono</label><input name="phone" placeholder="+1 555 000 0000" type="tel"/></div>
-<div class="fgroup"><label>Paese di Residenza *</label><input name="country" placeholder="Italy, UK, USA…" required="" type="text"/></div>
+<div class="fgroup"><label>Email *</label><input autocomplete="email" name="email" placeholder="you@company.com" required="" type="email"/></div>
+<div class="fgroup"><label>WhatsApp / Telefono *</label><input autocomplete="tel" name="phone" placeholder="+1 555 000 0000" required="" type="tel"/></div>
+<div class="fgroup"><label>Paese di Residenza *</label><input autocomplete="country-name" name="country" placeholder="Italy, UK, USA…" required="" type="text"/></div>
 <div class="fgroup">
 <label>Di cosa hai bisogno?</label>
 <select name="service">
@@ -290,7 +290,7 @@ if(form){form.addEventListener('submit',function(e){e.preventDefault();var btn=f
   try{var qs=new URLSearchParams(window.location.search);payload.utm_source=qs.get('utm_source')||'';payload.utm_medium=qs.get('utm_medium')||'';payload.utm_campaign=qs.get('utm_campaign')||'';}catch(err){}
   payload.elapsed=Math.round((Date.now()-__pageLoadTs)/1000);
   if(window.albtaaTrackEvent){window.albtaaTrackEvent({type:'form_submit',page:document.title,lang:document.documentElement.lang||'',pageUrl:window.location.href});}
-  fetch(form.action,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(function(){document.querySelector('.fcard').innerHTML='<div style="text-align:center;padding:40px 20px"><div style="font-size:2.5rem;margin-bottom:14px">✅</div><h2 style="font-family:var(--fh);font-weight:800;color:var(--navy);font-size:1.3rem;margin-bottom:10px">Messaggio inviato!</h2><p style="color:var(--muted);font-size:.9rem;margin-bottom:24px">Ti risponderemo entro 24 ore lavorative. Controlla anche lo spam.</p><a href="https://wa.me/355693601802" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:#25D366;color:#fff;font-weight:700;font-size:.9rem;text-decoration:none">💬 Scrivici su WhatsApp</a></div>';}).catch(function(){btn.textContent=od;btn.disabled=false;alert('Errore. Riprova o scrivici su WhatsApp.');});})}
+  fetch(form.action,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(function(){document.querySelector('.fcard').innerHTML='<div style="text-align:center;padding:40px 20px"><div style="font-size:2.5rem;margin-bottom:14px">✅</div><h2 style="font-family:var(--fh);font-weight:800;color:var(--navy);font-size:1.3rem;margin-bottom:10px">Richiesta ricevuta!</h2><p style="color:var(--muted);font-size:.9rem;margin-bottom:24px">Ti risponderemo entro 24 ore lavorative. Controlla anche lo spam.</p><a href="https://wa.me/355693601802" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:#25D366;color:#fff;font-weight:700;font-size:.9rem;text-decoration:none">💬 Scrivici su WhatsApp</a></div>';}).catch(function(){btn.textContent=od;btn.disabled=false;alert('Errore di invio. Riprova o contattaci su WhatsApp.');});})}
 })();
 </script>
 <script>
