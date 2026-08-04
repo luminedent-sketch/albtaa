@@ -1392,42 +1392,47 @@ function renderJourney(c){
 function renderJourneyStep(c){
   var L = t();
   var stepLabel = function(n){ return '<div class="journey-label">'+L.stepLbl+' '+n+' '+L.ofLbl+' 5'+(n===1?' · '+c.short:'')+'</div>'; };
+  // Single source of truth for the nav buttons: every step's markup is mutually
+  // exclusive (only one is ever in the DOM at a time via innerHTML swap), but we
+  // still avoid hard-coding id="jNext"/id="jBack" in multiple places so a future
+  // refactor (e.g. keeping two steps mounted for a transition) can't silently
+  // reintroduce a real duplicate-ID bug.
+  var navButtons = function(nextLabel, showBack){
+    return '<button class="journey-next" id="jNext">'+nextLabel+'</button>'+
+      (showBack ? '<button class="journey-back" id="jBack">'+L.back+'</button>' : '');
+  };
   if(journeyStep===0){
     var opts = COUNTRIES.map(function(co){ return '<option value="'+co.name+'|'+co.lang+'">'+co.name+'</option>'; }).join('');
     return stepLabel(1)+
       '<div class="journey-q">'+L.qCountry+'</div>'+
       '<select id="jCountry" style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:.95rem;font-family:inherit;margin-bottom:14px;background:#fff">'+
       '<option value="">'+L.phCountry+'</option>'+opts+'</select>'+
-      '<button class="journey-next" id="jNext">'+L.cont+'</button>';
+      navButtons(L.cont, false);
   }
   if(journeyStep===1){
     return stepLabel(2)+
       '<div class="journey-q">'+L.qName+'</div>'+
       '<input id="jName" placeholder="'+L.phName+'" autocomplete="name" type="text"/>'+
-      '<button class="journey-next" id="jNext">'+L.cont+'</button>'+
-      '<button class="journey-back" id="jBack">'+L.back+'</button>';
+      navButtons(L.cont, true);
   }
   if(journeyStep===2){
     return stepLabel(3)+
       '<div class="journey-ack">'+L.ackWelcome(esc(journeyData.name || 'there'))+'</div>'+
       '<div class="journey-q">'+L.qEmail+'</div>'+
       '<input id="jEmail" placeholder="'+L.phEmail+'" autocomplete="email" type="email"/>'+
-      '<button class="journey-next" id="jNext">'+L.cont+'</button>'+
-      '<button class="journey-back" id="jBack">'+L.back+'</button>';
+      navButtons(L.cont, true);
   }
   if(journeyStep===3){
     return stepLabel(4)+
       '<div class="journey-ack">'+L.ackAlmost+'</div>'+
       '<div class="journey-q">'+L.qPhone+'</div>'+
       '<input id="jPhone" placeholder="'+L.phPhone+'" autocomplete="tel" type="tel"/>'+
-      '<button class="journey-next" id="jNext">'+L.cont+'</button>'+
-      '<button class="journey-back" id="jBack">'+L.back+'</button>';
+      navButtons(L.cont, true);
   }
   return stepLabel(5)+
     '<div class="journey-q">'+L.qCompany+'</div>'+
     '<input id="jCompany" placeholder="'+L.phCompany+'" type="text"/>'+
-    '<button class="journey-next" id="jNext">'+L.confirm+'</button>'+
-    '<button class="journey-back" id="jBack">'+L.back+'</button>';
+    navButtons(L.confirm, true);
 }
 
 function esc(s){ return String(s).replace(/[<>&"]/g, function(ch){ return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[ch]; }); }
