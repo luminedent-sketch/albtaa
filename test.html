@@ -20,7 +20,7 @@ document.getElementById('f').onsubmit = async (e) => {
   const fd = new FormData(e.target);
   const res = await fetch('https://crm-albtaa-com.vercel.app/api/v1/public/submissions', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Api-Key': 'pk_...' },
+    headers: { 'Content-Type': 'application/json', 'X-Api-Key': 'pk_PfORYReWWPFv134BQgrvF6NfiCxBnOmPe_1LSNoQgi8' },
     body: JSON.stringify({
       formSlug: 'contact',
       firstName: fd.get('firstName'),
