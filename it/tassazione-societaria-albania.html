@@ -354,7 +354,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 
 <div class="hcard-sub">Consulenza gratuita · Risposta entro 24 ore</div>
 
-<form action="https://script.google.com/macros/s/AKfycbwoQynH8f-pftGWwUPvAY5A-ZFBlahhjWcPw5eLnvhRismwrCurLNyNdZVpFRAWa6W5/exec" id="reg-form" method="POST">
+<form action="https://script.google.com/macros/s/AKfycbwoQynH8f-pftGWwUPvAY5A-ZFBlahhjWcPw5eLnvhRismwrCurLNyNdZVpFRAWa6W5/exec" id="reg-form" method="POST"><input type="text" name="albtaa_hp_9f2" value="" autocomplete="new-password" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;pointer-events:none" />
 <input name="page" type="hidden" value="tassazione-societaria-albania"/>
 <input name="type" type="hidden" value="lead"/>
 <input class="js-referrer" name="referrer" type="hidden" value=""/>
@@ -572,7 +572,7 @@ footer{background:var(--navy);padding:56px 0 28px;color:rgba(255,255,255,.55)}
 
 <div class="hcard-sub">Consulenza gratuita · Risposta entro 24 ore</div>
 
-<form action="https://script.google.com/macros/s/AKfycbwoQynH8f-pftGWwUPvAY5A-ZFBlahhjWcPw5eLnvhRismwrCurLNyNdZVpFRAWa6W5/exec" id="final-form" method="POST">
+<form action="https://script.google.com/macros/s/AKfycbwoQynH8f-pftGWwUPvAY5A-ZFBlahhjWcPw5eLnvhRismwrCurLNyNdZVpFRAWa6W5/exec" id="final-form" method="POST"><input type="text" name="albtaa_hp_9f2" value="" autocomplete="new-password" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;pointer-events:none" />
 <input name="page" type="hidden" value="tassazione-societaria-albania"/>
 <input name="type" type="hidden" value="lead"/>
 <input class="js-referrer" name="referrer" type="hidden" value=""/>
@@ -742,15 +742,29 @@ function bindLeadForm(form){
   payload.userAgent=navigator.userAgent;
   try{var qs=new URLSearchParams(window.location.search);payload.utm_source=qs.get('utm_source')||'';payload.utm_medium=qs.get('utm_medium')||'';payload.utm_campaign=qs.get('utm_campaign')||'';}catch(err){}
   payload.elapsed=Math.round((Date.now()-__pageLoadTs)/1000);
-  if(window.albtaaTrackEvent){window.albtaaTrackEvent({type:'form_submit',page:document.title,lang:document.documentElement.lang||'',pageUrl:window.location.href});}
-  fetch(form.action,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain;charset=utf-8'}})
-      .then(function(){
-        form.innerHTML='<div style="text-align:center;padding:28px 0"><div style="font-size:2rem;margin-bottom:10px">✅</div><div style="font-family:var(--fh);font-weight:800;color:var(--navy);font-size:1.1rem;margin-bottom:6px">Richiesta inviata!</div><p style="color:var(--muted);font-size:.88rem">Ti risponderemo entro 24 ore.</p></div>';
-      })
-      .catch(function(){
-        btn.textContent=od;btn.disabled=false;
-        alert('Errore di invio. Riprova o contattaci su WhatsApp.');
+  var __ctrl=(window.AbortController?new AbortController():null);
+  var __timeoutId=__ctrl?setTimeout(function(){__ctrl.abort();},12000):null;
+  fetch(form.action,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain;charset=utf-8'},signal:__ctrl?__ctrl.signal:undefined})
+    .then(function(r){
+      if(__timeoutId)clearTimeout(__timeoutId);
+      return r.text().then(function(t){
+        var d=null;try{d=JSON.parse(t);}catch(parseErr){d=null;}
+        return {ok:r.ok,data:d};
       });
+    })
+    .then(function(res){
+      if(res.ok&&res.data&&res.data.success===true){
+        if(window.albtaaTrackEvent){window.albtaaTrackEvent({type:'form_submit',page:document.title,lang:document.documentElement.lang||'',pageUrl:window.location.href});}
+        form.innerHTML='<div style="text-align:center;padding:28px 0"><div style="font-size:2rem;margin-bottom:10px">✅</div><div style="font-family:var(--fh);font-weight:800;color:var(--navy);font-size:1.1rem;margin-bottom:6px">Richiesta inviata!</div><p style="color:var(--muted);font-size:.88rem">Ti risponderemo entro 24 ore.</p></div>';
+      } else {
+        throw new Error('submit_failed');
+      }
+    })
+    .catch(function(){
+      if(__timeoutId)clearTimeout(__timeoutId);
+      btn.textContent=od;btn.disabled=false;
+        alert('Errore di invio. Riprova o contattaci su WhatsApp.');
+    });
   });
 }
 bindLeadForm(document.getElementById('reg-form'));
