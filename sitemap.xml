@@ -242,4 +242,133 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/cookies.html"/>
   </url>
 
+  <url>
+    <loc>https://albtaa.com/vat-number-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.94</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/vat-number-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/partita-iva-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/vat-number-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/partita-iva-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/partita-iva-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/vat-number-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/vat-number-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/albania-company-registration-cost.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.94</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/albania-company-registration-cost.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/costo-registrazione-azienda-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/albania-company-registration-cost.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/costo-registrazione-azienda-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/costo-registrazione-azienda-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/albania-company-registration-cost.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/albania-company-registration-cost.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/starting-business-in-albania-as-a-foreigner.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.93</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/starting-business-in-albania-as-a-foreigner.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/avviare-un-attivita-in-albania-da-straniero.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/starting-business-in-albania-as-a-foreigner.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/avviare-un-attivita-in-albania-da-straniero.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.91</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/avviare-un-attivita-in-albania-da-straniero.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/starting-business-in-albania-as-a-foreigner.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/starting-business-in-albania-as-a-foreigner.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/corporate-tax-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/corporate-tax-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/tassazione-societaria-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/corporate-tax-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/tassazione-societaria-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/tassazione-societaria-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/corporate-tax-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/corporate-tax-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/dividend-tax-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/dividend-tax-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/tassazione-dividendi-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/dividend-tax-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/tassazione-dividendi-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/tassazione-dividendi-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/dividend-tax-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/dividend-tax-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/residence-permit-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/residence-permit-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/permesso-di-soggiorno-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/residence-permit-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/it/permesso-di-soggiorno-albania.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://albtaa.com/it/permesso-di-soggiorno-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/residence-permit-albania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/residence-permit-albania.html"/>
+  </url>
+
+  <url>
+    <loc>https://albtaa.com/albanian-business-navigator.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://albtaa.com/albanian-business-navigator.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://albtaa.com/albanian-business-navigator.html"/>
+  </url>
+
 </urlset>
