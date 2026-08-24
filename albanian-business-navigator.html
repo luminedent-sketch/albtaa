@@ -9,6 +9,9 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-VCMGLLZQB1');
+  /* ZËVENDËSO G-XXXXXXXXXX me ID-në reale të property-t tënd të veçantë për ABN.
+     S'duhet script i dytë gtag.js — një i mjafton, thjesht shtohet një 'config' shtesë. */
+  gtag('config', 'G-XXXXXXXXXX');
 </script>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Which Company to Open in Albania? Interactive Business Path Explorer | ALBTAA</title>
@@ -22,9 +25,14 @@
 <meta property="og:description" content="An interactive 3D tour of Tirana that helps you find the right business path in Albania — tech, investment, trading, consulting or engineering — then register in 3–5 days."/>
 <meta property="og:url" content="https://albtaa.com/albanian-business-navigator.html"/>
 <meta property="og:locale" content="en_US"/>
+<meta property="og:image" content="https://albtaa.com/assets/og-navigator.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Which Company Should You Open in Albania? — ALBTAA Interactive Business Path Explorer"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Which Company to Open in Albania? Interactive Business Path Explorer | ALBTAA"/>
 <meta name="twitter:description" content="An interactive 3D tour of Tirana — explore 6 business paths and find your fit, then register your Albanian company in 3–5 days."/>
+<meta name="twitter:image" content="https://albtaa.com/assets/og-navigator.png"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -49,7 +57,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.js" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -388,6 +396,34 @@ button,a,.gate-btn,.panel-cta,.panel-secondary,.journey-next,.journey-back,.brie
 </head>
 <body>
 
+<!-- Fast-path CTA — visible from the first second, independent of the cinematic/map, for visitors who already decided and don't want the tour. Addresses the "gate before value" UX finding. -->
+<a id="fastPathCta" href="https://albtaa.com/register-company-albania.html"
+   style="position:fixed;top:max(14px, env(safe-area-inset-top));right:max(14px, env(safe-area-inset-right));z-index:70;
+          display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);color:#0e1b2e;
+          padding:9px 14px;border-radius:100px;font-family:'Inter',system-ui,sans-serif;font-weight:700;
+          font-size:.72rem;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25);
+          border:1px solid rgba(255,255,255,.5)">
+  Skip the tour — register now →
+</a>
+<script>
+(function(){
+  var cta = document.getElementById('fastPathCta');
+  if(!cta) return;
+  cta.addEventListener('click', function(){
+    if(typeof gtag==='function') gtag('event','fast_path_cta_click',{event_category:'engagement',event_label:'skip_tour_register'});
+  });
+  /* fade out once the visitor actively engages with the interactive experience (picked a path),
+     so it never competes with the in-flow CTAs — but stays available for the first, undecided seconds */
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('.mk, .mk-hq')){
+      cta.style.transition = 'opacity .4s ease';
+      cta.style.opacity = '0';
+      setTimeout(function(){ cta.style.display = 'none'; }, 400);
+    }
+  });
+})();
+</script>
+
 <noscript>
 <div style="max-width:720px;margin:60px auto;padding:24px;font-family:sans-serif;color:#0e1b2e;line-height:1.6">
 <h2 style="font-family:sans-serif">Register a Company in Albania — Albania Business Navigator by ALBTAA</h2>
@@ -598,7 +634,7 @@ button,a,.gate-btn,.panel-cta,.panel-secondary,.journey-next,.journey-back,.brie
 </script>
 
 <script>
-(function(){
+function __initNavigatorExperience(){
 'use strict';
 
 if(typeof maplibregl === 'undefined'){
@@ -999,10 +1035,22 @@ function fallbackCurve(from, to, samples){
 /* ---------- real, road-snapped route via the free public OSRM routing service ---------- */
 function fetchRoadRoute(from, to){
   var url = 'https://router.project-osrm.org/route/v1/driving/'+from[0]+','+from[1]+';'+to[0]+','+to[1]+'?overview=full&geometries=geojson';
-  return fetch(url).then(function(r){ return r.json(); }).then(function(data){
+  /* Safety net found during live QA: this fetch had no timeout. If the routing API is slow,
+     down, or unreachable (flaky network, corporate firewall, mobile data drop), the promise
+     never rejects and the visitor gets stuck before the panel opens — the core conversion step.
+     A short timeout forces the existing fallbackCurve() path instead of hanging indefinitely. */
+  var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+  var timeoutId = controller ? setTimeout(function(){ controller.abort(); }, 4000) : null;
+  return fetch(url, controller ? { signal: controller.signal } : {}).then(function(r){
+    if(timeoutId) clearTimeout(timeoutId);
+    return r.json();
+  }).then(function(data){
     if(data && data.routes && data.routes[0]) return data.routes[0].geometry.coordinates;
     throw new Error('no route');
-  }).catch(function(){ return fallbackCurve(from, to, 60); });
+  }).catch(function(){
+    if(timeoutId) clearTimeout(timeoutId);
+    return fallbackCurve(from, to, 60);
+  });
 }
 
 /* ---------- fly the real camera first-person along the real road ---------- */
@@ -1016,7 +1064,7 @@ function flyAlongRoute(routePts, opts, onDone){
 
   if(REDUCED_MOTION){
     map.jumpTo({center:dest0, zoom:16, pitch:44, bearing:bearingBetween(routePts[0]||dest0, dest0)});
-    map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:routePts}});
+    if(map.getSource('route')) map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:routePts}});
     flying = false;
     currentPos = dest0;
     if(onDone) onDone();
@@ -1058,7 +1106,7 @@ function flyAlongRoute(routePts, opts, onDone){
     return routePts[routePts.length-1];
   }
 
-  map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:routePts}});
+  if(map.getSource('route')) map.getSource('route').setData({type:'Feature', geometry:{type:'LineString', coordinates:routePts}});
 
   document.getElementById('routeHintFrom').textContent = opts.from || '';
   document.getElementById('routeHintTo').textContent = opts.label || 'Traveling…';
@@ -1695,7 +1743,14 @@ function markSendFailed_(){
   }catch(e){}
 }
 
-})();
+}
+/* maplibre-gl.js now loads with `defer` so it never blocks the first paint / SEO text below.
+   Start the 3D experience once it — and the rest of the deferred scripts — have actually arrived. */
+if(document.readyState === 'complete'){
+  __initNavigatorExperience();
+}else{
+  window.addEventListener('load', __initNavigatorExperience);
+}
 </script>
 </body>
 </html>
