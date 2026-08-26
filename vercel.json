@@ -16,12 +16,6 @@
       "destination": "/it/registrare-azienda-albania.html",
       "permanent": true
     },
-    { "source": "/blog/vat-albania.html", "destination": "/vat-number-albania.html", "permanent": true },
-    { "source": "/blog/iva-albania.html", "destination": "/vat-number-albania.html", "permanent": true },
-    { "source": "/blog/how-to-open-shpk-albania.html", "destination": "/register-company-albania.html", "permanent": true },
-    { "source": "/blog/albania-vs-italy-taxes.html", "destination": "/corporate-tax-albania.html", "permanent": true },
-    { "source": "/blog/tasse-albania-vs-italia.html", "destination": "/it/tassazione-societaria-albania.html", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/register-company-albania.html", "permanent": true },
     { "source": "/fiscal-representative-albania.html", "destination": "/tax-representative-albania.html", "permanent": true },
     { "source": "/registrazione-iva-albania-aziende-straniere.html", "destination": "/vat-number-albania.html", "permanent": true },
     { "source": "/vat-registration-albania-foreign-companies.html", "destination": "/vat-number-albania.html", "permanent": true },
