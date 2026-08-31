@@ -16,9 +16,35 @@
       "destination": "/it/registrare-azienda-albania.html",
       "permanent": true
     },
-    { "source": "/fiscal-representative-albania.html", "destination": "/tax-representative-albania.html", "permanent": true },
-    { "source": "/registrazione-iva-albania-aziende-straniere.html", "destination": "/vat-number-albania.html", "permanent": true },
-    { "source": "/vat-registration-albania-foreign-companies.html", "destination": "/vat-number-albania.html", "permanent": true },
-    { "source": "/aprire-societa-albania-stranieri.html", "destination": "/it/registrare-azienda-albania.html", "permanent": true }
+    {
+      "source": "/fiscal-representative-albania.html",
+      "destination": "/tax-representative-albania.html",
+      "permanent": true
+    },
+    {
+      "source": "/registrazione-iva-albania-aziende-straniere.html",
+      "destination": "/vat-number-albania.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-registration-albania-foreign-companies.html",
+      "destination": "/vat-number-albania.html",
+      "permanent": true
+    },
+    {
+      "source": "/aprire-societa-albania-stranieri.html",
+      "destination": "/it/registrare-azienda-albania.html",
+      "permanent": true
+    },
+    {
+      "source": "/rappresentante-fiscale-albania.html",
+      "destination": "/it/rappresentante-fiscale-albania.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/albania-company-formation-cost.html",
+      "destination": "/albania-company-registration-cost.html",
+      "permanent": true
+    }
   ]
 }
